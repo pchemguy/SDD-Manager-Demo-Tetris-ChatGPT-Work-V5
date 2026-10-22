@@ -43,3 +43,9 @@ Follow `sdd-manage`'s preparation and phase-activation workflows for required tr
 ## Project guidance
 
 Maintain project-specific navigation and validated setup/check commands here as they become established. Do not invent commands, paths, requirements or completion claims.
+
+## Validated project commands and navigation
+
+Node.js 24+; `npm ci --ignore-scripts`, `npm run check`, `npm run test:unit`, `npm run setup:browsers`, `npm run test:browser`, `npm run build`, and `npm run dev`. Browser setup and execution share the absolute repository-owned `.cache/browsers`; the runner owns bounded cancellation/teardown. Consult README and BROWSER_DEV_POLICY for provisioning and the diagnosed Firefox override.
+
+Pure geometry/session modules are in src/model.ts and src/game.ts; browser composition/presentation in src/main.ts, src/renderer.ts and src/style.css. Read docs/dev/SPEC.md for behavior, TASKS.md for scope and docs/dev/HANDOFF.md for continuation. Test-mode fixtures must remain absent from production builds. Keep source dependency direction browser → domain and preserve root policies/disclosures.

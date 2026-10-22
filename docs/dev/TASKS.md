@@ -4,34 +4,42 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 ## Phase 1 — Classic baseline
 
-- [ ] Phase 1 — Classic baseline
-    - [ ] Milestone 1.1 — Verified game foundation
-        - [ ] T-001 — Establish pinned tooling and isolated browser capability
+- [x] Phase 1 — Classic baseline
+    - [x] Milestone 1.1 — Verified game foundation
+        - [x] T-001 — Establish pinned tooling and isolated browser capability
             Depends on: none.
             Scope and evidence: Root package/lock/TS/Playwright config and scripts; R-09. Verify locked installation, both managed browser versions, two isolated interaction/render/teardown cycles per browser, actual runner wiring and central-policy diagnostics. Record setup provenance and limits.
-        - [ ] T-002 — Implement tetromino geometry and normal placement
+            Verified result: [T-001](reports/phases/1/T-001.md).
+        - [x] T-002 — Implement tetromino geometry and normal placement
             Depends on: T-001.
             Scope and evidence: src/model.ts and focused unit checks; R-01/R-08. Observe RED/GREEN for seven four-cell types, rotations, bounds, collision and normal landing.
-        - [ ] T-003 — Implement deterministic classic session and interval locking
+            Verified result: [T-002](reports/phases/1/T-002.md).
+        - [x] T-003 — Implement deterministic classic session and interval locking
             Depends on: T-002.
             Scope and evidence: src/game.ts and unit checks; R-01–02/R-08. Observe RED/GREEN for movement, gravity, exact grounding deadline, reset/pause, clear/scoring/level and blocked spawn.
-        - [ ] T-004 — Review test and report milestone 1.1
+            Verified result: [T-003](reports/phases/1/T-003.md).
+        - [x] T-004 — Review test and report milestone 1.1
             Depends on: T-001, T-002, T-003.
             Scope and evidence: Read-only domain/tooling code review, required unit/type checks, blocker repair, TODO assessment, docs/dev/reports/phases/1/1.1.md and HANDOFF refresh.
-    - [ ] Milestone 1.2 — Playable browser experience
-        - [ ] T-005 — Render a playable classic game with native controls
+            Verified result: [T-004](reports/phases/1/T-004.md).
+    - [x] Milestone 1.2 — Playable browser experience
+        - [x] T-005 — Render a playable classic game with native controls
             Depends on: T-004.
             Scope and evidence: src/renderer.ts, src/main.ts, style and index; R-01–02/R-06 baseline. Browser RED/GREEN for start, real key movement, rotation, pause/restart, focus and Canvas output.
-        - [ ] T-006 — Verify classic browser acceptance and document setup
+            Verified result: [T-005](reports/phases/1/T-005.md).
+        - [x] T-006 — Verify classic browser acceptance and document setup
             Depends on: T-005.
             Scope and evidence: tests/browser and README/AGENTS; R-09. Both-browser native interaction, game-over/line-clear fixtures, screenshot inspection, production build and validated setup commands.
-        - [ ] T-007 — Review test and report milestone 1.2
+            Verified result: [T-006](reports/phases/1/T-006.md).
+        - [x] T-007 — Review test and report milestone 1.2
             Depends on: T-005, T-006.
             Scope and evidence: Whole classic UI/integration code review, required regressions, docs/dev/reports/phases/1/1.2.md, TODO assessment and HANDOFF refresh.
-    - [ ] Milestone 1.3 — Phase review
-        - [ ] T-008 — Review test and report phase 1
+            Verified result: [T-007](reports/phases/1/T-007.md).
+    - [x] Milestone 1.3 — Phase review
+        - [x] T-008 — Review test and report phase 1
             Depends on: Milestones 1.1 and 1.2 complete and closed.
             Scope and evidence: Review phase exits/code and all classic regressions, persistence audit, docs/dev/reports/phases/1/PHASE-REPORT.md and HANDOFF. No modern capability claim.
+            Verified result: [T-008](reports/phases/1/T-008.md).
 
 ## Phase 2 — Modern controls
 
@@ -92,4 +100,4 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 ## Execution evidence
 
-Implementation has not begun. Task-specific RED/GREEN commands, checks and outcome records belong under the owning phase report directory and are linked from completion entries. Review reports preserve findings, TODO sections and source scope.
+Implementation is progressing under the recorded full-range authority. Task-specific RED/GREEN commands, checks and outcome records belong under the owning phase report directory and are linked from completion entries. Review reports preserve findings, TODO sections and source scope.
