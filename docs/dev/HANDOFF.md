@@ -1,6 +1,6 @@
 # Project handoff
 
-Checkpoint: T-020 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
+Checkpoint: T-021 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
 
 ## Workflow and sources
 
@@ -14,14 +14,14 @@ Main development under sdd-implement; all four phases remain within accepted sco
 
 ## Branch and source
 
-Current branch `phase/4-persistent-configuration` targets main; branch-off `31309b51d6c3901f0a58c98f748bd6247ba731f0`. Reviewed published source `6feac3b8bd9097d594ae19a6deb622d85a99f89c` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
+Current branch `phase/4-persistent-configuration` targets main; branch-off `31309b51d6c3901f0a58c98f748bd6247ba731f0`. Reviewed published source `fd90f89b0737bf5ba3a46ad288f3c48ebafee7f0` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
 
 ## Current boundary and next action
 
-Milestone 4.1 Ready after independent review and repair of Important 4.1-F01. Both browsers reproduced a slow persistence effect locking a piece before policy change; selection/configuration now share act() command timing, and both verify a fresh full interval. All 99 unit, 40 Chromium/Firefox, TypeScript and production-build checks pass after repair with zero owned browser survivors. Six-setting precedence, defaults, failures, cookies, reload/reopen and documentation are covered. TODO: None.
+Phase 4 and full R-01–09 implementation Ready: fresh 99 unit and 40 managed Chromium/Firefox checks, TypeScript, production build and production fixture exclusion pass. Whole-history audit verifies all 20 preceding task result/evidence/initial-checkbox commits; phase-4 preceding three-task audit passes and native milestone 9 is closed. Complete code/acceptance review and aggregated findings/TODO assessment find no unresolved issue. Final reports and HANDOFF identify their checkpoint and remaining owning publication/integration/release effects.
 
-Boundary report: [4.1.md](reports/phases/4/4.1.md).
+Boundary report: [PHASE-REPORT.md](reports/phases/4/PHASE-REPORT.md).
 
-After this owning result is published and issue 29 closes, close native milestone 9 after all three issues read back closed. Execute T-021 whole-project/phase review with full regression, task persistence audit and aggregated TODO report. Then close milestone 10, integrate phase 4 with required merged checks, and publish/read back full-scope v1.0.0; the authorized range ends there.
+Publish/read back this owning T-021 result and close issue 30, close native milestone 10, audit all 21 implementation task commits, and integrate phase 4 with exactly two parents plus required merged unit/type/build/browser checks. Publish main, assess release range and source archive, then publish/read back full-scope v1.0.0 with matching version/tag/exact notes. Verify final repository/tracking/release state and stop at the completed authorized range.
 
 Publish/read back each commit before further task work; task result, evidence and initial completion checkbox stay together. Close task issue after publication, then eligible native milestone after all associated issues close. Integrate a complete phase with an explicit two-parent merge, required merged checks and remote readback; publish matching version/tag/release notes before successor activation. This handoff cannot prove its own subsequent publication.
