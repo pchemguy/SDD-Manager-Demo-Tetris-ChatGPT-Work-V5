@@ -2,7 +2,7 @@
 import './style.css';
 import { Game } from './game.ts';
 import { drawBoard, drawPreview } from './renderer.ts';
-import { CHOICES, KEYS, decodeSetting, type SettingKey } from './settings.ts';
+import { CHOICES, KEYS, SettingsStore, type SettingKey } from './settings.ts';
 import { version } from '../package.json';
 declare global { interface Window { __tetris: { game: Game; render: () => void } } }
 const LABELS:Record<SettingKey,string>={ghost:'Ghost piece',hardDrop:'Hard drop',next:'Next-piece preview',dropLock:'Hard-drop locking',lock:'General locking',hold:'Hold piece'};
@@ -35,7 +35,13 @@ app.innerHTML=`
   </div>
 </main><footer>ONE PIECE AT A TIME.<span>Your pace, your game</span></footer>`;
 const element=<T extends HTMLElement>(id:string)=>document.getElementById(id) as T;
-const board=element<HTMLCanvasElement>('board');const game=new Game();
+const settingsStore=new SettingsStore({
+  readUrl:()=>window.location.href,
+  readCookies:()=>document.cookie,
+  writeCookie:cookie=>{document.cookie=cookie;},
+  replaceUrl:url=>{window.history.replaceState(window.history.state,'',url);},
+});
+const board=element<HTMLCanvasElement>('board');const game=new Game(Math.random,settingsStore.current);
 const names={ready:'Ready',running:'Playing',paused:'Paused',over:'Game over'};
 function text(id:string,value:string):void { const node=element(id);if(node.textContent!==value)node.textContent=value; }
 function render():void {
@@ -85,7 +91,7 @@ document.addEventListener('keydown',event=>{
 });
 for(const key of KEYS){
   const control=element<HTMLSelectElement>('setting-'+key);control.value=game.settings[key];
-  control.addEventListener('change',()=>{const value=decodeSetting(key,control.value);if(value!==undefined)act(()=>game.configure({...game.settings,[key]:value}),false);});
+  control.addEventListener('change',()=>act(()=>{if(settingsStore.select(key,control.value))game.configure(settingsStore.current);},false));
 }
 window.addEventListener('blur',()=>{if(game.status==='running')act(()=>game.togglePause(),false);});
 function frame(now:number):void{game.advance(now-previous);previous=now;render();requestAnimationFrame(frame);}

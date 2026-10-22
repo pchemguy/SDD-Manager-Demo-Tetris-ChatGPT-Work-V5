@@ -29,11 +29,30 @@ Clear four lines at once to earn one penetrator bonus; up to three unspent bonus
 
 A penetrator can cross settled cells without destroying them. Every accepted position must still have a legal non-overlapping landing at or below it. Gravity/soft drop traverse step by step; hard drop and ghost find the lowest safe position beyond blockers. Active and held penetrators are entirely white; regular pieces use their assigned colors. Hold preserves the ability without an extra charge or refund. The ability ends on lock; restart clears stock and held pieces.
 
-## Configure this session
+## Configure and share
 
 The side panel controls ghost visibility (hide/dynamic/show), hard drop, next preview, hard-drop locking, general locking and hold. Defaults show the ghost and preview, enable hold/hard drop, and give grounded pieces a full gravity interval; hard drop follows that policy.
 
-Select failed-attempt locking to lock on the next unsuccessful downward move. Hard drop following it lands first and waits for such an attempt. Select immediate hard-drop locking to lock as soon as it lands. Changing a policy alone never locks a piece; switching to interval while grounded starts a fresh interval. Display-only changes preserve the queue and deadline. Settings apply immediately and survive a new round within this session. Saved/shareable settings arrive in the persistence increment.
+Select failed-attempt locking to lock on the next unsuccessful downward move. Hard drop following it lands first and waits for such an attempt. Select immediate hard-drop locking to lock as soon as it lands. Changing a policy alone never locks a piece; switching to interval while grounded starts a fresh interval. Display-only changes preserve the queue and deadline. Settings apply immediately and survive a new round.
+
+Each setting restores independently from one valid URL parameter, then its saved cookie, then its default. Values are case-sensitive exact tokens. Invalid, empty or repeated URL parameters fall through to that setting's cookie; invalid or malformed cookies fall through to its default. Unknown parameters and cookies are ignored.
+
+| URL parameter | Cookie name | Values | Default |
+| --- | --- | --- | --- |
+| `ghost` | `tetris_ghost` | `hide`, `dynamic`, `show` | `show` |
+| `hardDrop` | `tetris_hardDrop` | `on`, `off` | `on` |
+| `next` | `tetris_next` | `on`, `off` | `on` |
+| `dropLock` | `tetris_dropLock` | `follow`, `instant` | `follow` |
+| `lock` | `tetris_lock` | `interval`, `failed` | `interval` |
+| `hold` | `tetris_hold` | `on`, `off` | `on` |
+
+Changing a control saves its cookie and replaces that parameter in the current URL, preserving unrelated parameters and the fragment. Copy that URL to share the explicit options; omitted options use the recipient's saved values or defaults. For a complete setup, append all six options to the served page URL, for example:
+
+```text
+?ghost=dynamic&hardDrop=on&next=on&dropLock=follow&lock=interval&hold=on
+```
+
+Every valid explicit URL value is saved, including values equal to the default. Omitted parameters keep saved cookies. Opening the page leaves its URL unchanged. Cookies use a one-year lifetime, Path=/ and SameSite=Lax, with Secure on HTTPS. If storage is unavailable, selected settings remain usable in the session; a failed URL update also preserves any successful cookie save. Only these six settings persist; round state and bonuses reset when the page opens again.
 
 ## Verify
 
@@ -51,4 +70,4 @@ Tests launch the real Vite application in isolated contexts. The browser runner 
 
 ## Project records
 
-[Development plan](docs/dev/PLAN.md), [behavior contracts](docs/dev/SPEC.md), [tasks and verified evidence](docs/dev/TASKS.md), and [handoff](docs/dev/HANDOFF.md) describe the accepted phased scope. Saved configuration is scheduled in the final increment. See [AI disclosure](AI_DISCLOSURE.md) and [SDD Manager](SDD-MANAGER.md).
+[Development plan](docs/dev/PLAN.md), [behavior contracts](docs/dev/SPEC.md), [tasks and verified evidence](docs/dev/TASKS.md), and [handoff](docs/dev/HANDOFF.md) describe the accepted phased scope. See [AI disclosure](AI_DISCLOSURE.md) and [SDD Manager](SDD-MANAGER.md).
