@@ -1,4 +1,4 @@
-/** Pure tetromino coordinates, board collision and shared normal-piece landing. */
+/** Pure tetromino coordinates, board collision and shared normal/penetrator placement and landing. */
 export const WIDTH = 10;
 export const HEIGHT = 20;
 export const TYPES = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'] as const;

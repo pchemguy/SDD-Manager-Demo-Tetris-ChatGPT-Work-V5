@@ -5,11 +5,14 @@ import { Game } from '../../src/game.ts';
 import { canPlace, fits, landing, emptyBoard } from '../../src/model.ts';
 const started=()=>{const game=new Game(()=>0);game.start();return game;};
 const count=(game:Game)=>game.board.flat().filter(Boolean).length;
-test('four-line clears earn one bonus and inventory caps at three',()=>{
+test('four-line clears cap unspent inventory independently of active and held penetrators',()=>{
   const game=started();
   for(let n=1;n<=4;n++){
     game.board=emptyBoard();for(let y=16;y<20;y++)game.board[y]=Array.from({length:10},(_,x)=>x===4?null:'J');
-    game.active={type:'I',rotation:1,x:2,y:16};game.advance(game.interval);assert.equal(game.bonuses,Math.min(3,n));
+    if(n===3){assert.equal(game.bonuses,2);game.held={type:'T',penetrator:true};}
+    game.active={type:'I',rotation:1,x:2,y:16,...(n===3?{penetrator:true}:{})};
+    game.advance(game.interval);assert.equal(game.bonuses,Math.min(3,n));
+    if(n>=3)assert.deepEqual(game.held,{type:'T',penetrator:true});
   }
 });
 test('activation spends once rejects absent stock and pause and preserves next',()=>{

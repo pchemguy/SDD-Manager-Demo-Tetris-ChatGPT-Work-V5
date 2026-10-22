@@ -70,7 +70,7 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 ## Phase 3 — Penetrator play
 
 - [ ] Phase 3 — Penetrator play
-    - [ ] Milestone 3.1 — Safe penetrators and bonus presentation
+    - [x] Milestone 3.1 — Safe penetrators and bonus presentation
         - [x] T-014 — Implement safe penetrator traversal and bonus lifecycle
             Depends on: T-013 and phase 2 integrated/released.
             Scope and evidence: src/model.ts, game and unit fixtures; R-05 with R-02–04. RED/GREEN for occupied traversal, lowest valid landing, rejected dead ends, inventory cap/spend, hold flag, activation/timing and non-overlap lock.
@@ -79,9 +79,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-014.
             Scope and evidence: renderer, main and browser checks; R-05/R-06. Real activation/hold/drop input, matching ghost, white active/held cells, lightning/numeric indicator updates and guidance in both browsers.
             Verified result: [T-015](reports/phases/3/T-015.md).
-        - [ ] T-016 — Review test and report milestone 3.1
+        - [x] T-016 — Review test and report milestone 3.1
             Depends on: T-014, T-015.
             Scope and evidence: Penetrator/invariant code review and focused/full regressions; docs/dev/reports/phases/3/3.1.md, TODO assessment and HANDOFF refresh.
+            Verified result: [T-016](reports/phases/3/T-016.md).
     - [ ] Milestone 3.2 — Phase review
         - [ ] T-017 — Review test and report phase 3
             Depends on: Milestone 3.1 complete and closed.

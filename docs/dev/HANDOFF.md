@@ -1,6 +1,6 @@
 # Project handoff
 
-Checkpoint: T-013 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
+Checkpoint: T-016 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
 
 ## Workflow and sources
 
@@ -16,20 +16,17 @@ Main development under sdd-implement; all four phases remain within accepted sco
 
 
 
+
 ## Branch and source
 
-Current branch `phase/2-modern-controls` targets main; branch-off `a908861ba877a906f2bff32ba7a4bbcc5687d963`. Reviewed published source `497f02899aaf92f1d3dd4a6ab5de5d56d417b4c0` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
+Current branch `phase/3-penetrator-play` targets main; branch-off `5aed8ea95d94417030252e2bbf70ddde70def9fb`. Reviewed published source `9cf0bc6aa4a1b08ddb310f6735969275d74ae6d7` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
 
 ## Current boundary and next action
 
-Phase 2 exit and whole net change reviewed; independent milestone review has no unresolved findings. Fresh 48-unit/24-browser/type/build checks pass with zero owned survivors. Four prior phase task closures pass persistence audit; milestone 5 confirmed closed. Transient hosted closure transport failure reconciled/recovered without duplicate writes or policy changes. No TODO; HANDOFF refreshed.
+Milestone 3.1 is Ready: independent review found no blocking defect; minor cap-independence coverage resolved with an existing fixture extended for active/held penetrators. 60 unit checks, 30 managed Chromium/Firefox checks, TypeScript and production build pass. Safe terminal placement, white presentation, native activation, bonus accounting and lifetime behavior match R-05. TODO: None.
 
-Boundary report: [PHASE-REPORT.md](reports/phases/2/PHASE-REPORT.md).
+Boundary report: [3.1.md](reports/phases/3/3.1.md).
 
-Publish/read back T-013 and close issue 22; close native milestone 6 and audit all five phase tasks. Explicitly integrate phase 2 into refreshed main, verify merged checks/publication, then publish/read back v0.2.0 before activating phase 3 penetrator play.
+After this result is published and issue T-016 closes, close native milestone 7 after all associated issues read back closed. Execute T-017 phase review, audit four phase task commits, then integrate with required merged checks and publish v0.3.0 before activating phase 4.
 
 Publish/read back each commit before further task work; task result, evidence and initial completion checkbox stay together. Close task issue after publication, then eligible native milestone after all associated issues close. Integrate a complete phase with an explicit two-parent merge, required merged checks and remote readback; publish matching version/tag/release notes before successor activation. This handoff cannot prove its own subsequent publication.
-
-## Phase 3 entry
-
-v0.2.0 is published at 5aed8ea95d94417030252e2bbf70ddde70def9fb (release 420629910), with exact body/tag/latest readback. All phase 2 tasks/milestones and its two-parent integration are verified. Phase 3 label, native milestones 7/8 and task issues 23–26 are projected/read back. Current branch phase/3-penetrator-play starts from that release source and targets main. T-014 owns the safe penetrator/bonus domain increment; T-015 owns presentation and native activation. Full-range authority remains unchanged.
