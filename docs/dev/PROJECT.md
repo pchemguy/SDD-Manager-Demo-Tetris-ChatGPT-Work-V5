@@ -1,13 +1,13 @@
 # Browser Tetris project brief
 
-Status: proposal awaiting first human approval under DOCS-002.
+Status: approved under DOCS-002; ongoing preparation is authorized by the user's remaining-checkpoint preapproval.
 Source: the user's complete project request of 2026-10-22.
 
 ## Purpose and intended outcome
 
 Develop a responsive, single-player browser Tetris game for keyboard play. Deliver a simple, useful classic baseline first, then expand it through bounded playable increments until the complete scope below is available. Each completed implementation phase receives a verified, integrated GitHub release.
 
-Desktop keyboard use and the technical direction below are proposed assumptions for confirmation. The repository currently contains development guidance and skills; no game implementation exists.
+Desktop keyboard use and the technical direction below are accepted project assumptions. The repository currently contains development guidance and skills; no game implementation exists.
 
 ## Complete target scope
 
@@ -21,17 +21,17 @@ Desktop keyboard use and the technical direction below are proposed assumptions 
 
 These requirements describe the complete product. PLAN will determine phase and milestone boundaries; detailed contracts and acceptance belong to SPEC.
 
-## Proposed technical direction and scope limits
+## Technical direction and scope limits
 
 Use TypeScript, HTML Canvas for the board, and ordinary HTML controls for configuration and status. This suits the small interface and allows explicit game-state contracts without a UI framework. Plain JavaScript with Canvas is a viable alternative if avoiding a compilation step is more important than static checks; TypeScript is recommended here.
 
-Distribute a static web application served over HTTP(S), with gameplay and settings handled in the browser. A backend, accounts, network multiplayer, online leaderboards, touch controls and saved in-progress games are outside the proposed scope. These exclusions preserve the requested focus; settings persistence remains included.
+Distribute a static web application served over HTTP(S), with gameplay and settings handled in the browser. A backend, accounts, network multiplayer, online leaderboards, touch controls and saved in-progress games are outside the project scope. These exclusions preserve the requested focus; settings persistence remains included.
 
 Use deterministic gameplay checks and automated application interaction and rendering checks. The existing [browser policy](../../BROWSER_DEV_POLICY.md) governs isolated Chromium and Firefox environments. Playwright with Chromium headless shell and its managed Firefox is the proposed automation route; document-only preparation requires no browser installation. Browser provisioning and actual runner execution must be evidenced before dependent acceptance claims.
 
-## Gameplay decisions proposed for confirmation
+## Gameplay decisions
 
-The following choices resolve material ambiguities in the request. They remain proposals until approved and will be developed into precise SPEC contracts before implementation.
+The approved choices below resolve material ambiguities in the request. SPEC develops their precise contracts before implementation.
 
 | Interaction | Proposed rule and reason |
 | --- | --- |
@@ -43,14 +43,14 @@ The following choices resolve material ambiguities in the request. They remain p
 | Live setting changes | Apply controls immediately. Disabling hold retains the stored piece. Switching a grounded piece to interval locking starts a fresh interval; switching to failed-attempt locking waits for the next failed downward attempt. A setting change alone does not lock a piece. |
 | Invalid configuration | Ignore an invalid URL value for that setting and fall back to a valid cookie, then default. Do not persist invalid URL values. Ignore invalid cookies. Keep the game usable with session settings and URL updates if browser cookie storage is unavailable. |
 
-Proposed defaults: ghost always visible; hard drop, next preview and hold enabled; full gravity interval general locking; hard drop follows general locking. Configuration names, validation syntax, key bindings, scoring, speed progression and rotation details will be specified during preparation.
+Defaults: ghost always visible; hard drop, next preview and hold enabled; full gravity interval general locking; hard drop follows general locking. Configuration names, validation syntax, key bindings, scoring, speed progression and rotation details will be specified during preparation.
 
 ## Delivery and versioning
 
 The user requests managed versioning and a published GitHub release after every implementation phase has completed, passed verification and been integrated. Each release must have the corresponding version tag and notes describing delivered behavior and material limits.
 
-Propose `v0.1.0` for the first playable baseline, minor-version increases for subsequent capability increments, patch increases for corrective releases, and `v1.0.0` when the complete requested scope is verified and integrated. Documentation preparation produces no playable release.
+Use `v0.1.0` for the first playable baseline, minor-version increases for subsequent capability increments, patch increases for corrective releases, and `v1.0.0` when the complete requested scope is verified and integrated. Documentation preparation produces no playable release.
 
 ## Review boundary
 
-Approve or revise this brief, its proposed scope assumptions, technical direction, defaults and gameplay decisions before ARCHITECTURE. The accepted brief will guide architecture, component design, SPEC, PLAN, layout and TASKS through their respective review checkpoints.
+This accepted brief guides architecture, component design, SPEC, PLAN, layout and TASKS. The user's 2026-10-22 preapproval covers the remaining human checkpoints; their technical QC and publication gates remain required.

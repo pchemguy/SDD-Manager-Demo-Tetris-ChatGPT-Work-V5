@@ -31,4 +31,4 @@ Canvas fits the spatial board; semantic HTML gives controls labels, focus behavi
 
 Unit checks cover geometry, state transitions and persistence through controlled adapters. Browser checks exercise the actual application, keyboard input, controls, Canvas output and isolated page lifecycles in Chromium and Firefox under the central browser policy. Dependency versions and generated browser assets are tooling concerns, separate from production code.
 
-Detailed logical responsibilities are defined in [DECOMPOSITION](DECOMPOSITION.md) when prepared; SPEC supplies behavioral contracts and layout supplies physical ownership.
+Detailed logical responsibilities are defined in [DECOMPOSITION](DECOMPOSITION.md); SPEC supplies behavioral contracts and layout supplies physical ownership.
