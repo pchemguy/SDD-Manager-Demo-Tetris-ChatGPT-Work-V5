@@ -6,9 +6,13 @@ export class Game {
   active: Piece | null = null;
   next: PieceType = 'I';
   status: Status = 'ready';
+  held: {type:PieceType} | null = null;
+  holdEnabled = true;
   score = 0;
   rows = 0;
   private random: () => number;
+  private bag: PieceType[] = [];
+  private holdUsed = false;
   private fallElapsed = 0;
   private lockElapsed = 0;
 
@@ -38,6 +42,12 @@ export class Game {
   rotate(): boolean {
     return this.active ? this.place({ ...this.active, rotation: (this.active.rotation + 1) % 4 }) : false;
   }
+  hold(): boolean {
+    if(this.status!=='running'||!this.active||!this.holdEnabled||this.holdUsed)return false;
+    const outgoing={type:this.active.type};const incoming=this.held?.type??this.next;
+    if(!this.held)this.next=this.draw();
+    this.held=outgoing;this.holdUsed=true;this.receive(incoming);return true;
+  }
   softDrop(): boolean { return this.down(true); }
 
   /** Process gravity and lock events chronologically, including ties and long frames. */
@@ -58,11 +68,19 @@ export class Game {
     }
   }
 
-  private draw(): PieceType { return TYPES[Math.floor(this.random() * TYPES.length)]; }
+  /** Sampling without replacement produces one uniformly shuffled complete bag. */
+  private draw(): PieceType {
+    if(!this.bag.length)this.bag=[...TYPES];
+    return this.bag.splice(Math.floor(this.random()*this.bag.length),1)[0];
+  }
+  private receive(type:PieceType):void {
+    this.active=spawn(type);this.fallElapsed=0;this.lockElapsed=0;
+    if(!fits(this.board,this.active)){this.active=null;this.status='over';}
+  }
   private reset(status: Status): void {
     this.board = emptyBoard(); this.score = 0; this.rows = 0;
-    this.fallElapsed = 0; this.lockElapsed = 0;
-    this.active = spawn(this.draw()); this.next = this.draw(); this.status = status;
+    this.bag=[];this.held=null;this.holdUsed=false;this.status=status;
+    this.receive(this.draw());this.next=this.draw();
   }
   private place(candidate: Piece): boolean {
     if (this.status !== 'running' || !fits(this.board, candidate)) return false;
@@ -86,8 +104,6 @@ export class Game {
     this.board = [...Array.from({ length: cleared }, () => Array<PieceType | null>(WIDTH).fill(null)), ...retained];
     this.score += ([0,100,300,500,800][cleared] ?? 0) * previousLevel;
     this.rows += cleared;
-    this.active = spawn(this.next); this.next = this.draw();
-    this.fallElapsed = 0; this.lockElapsed = 0;
-    if (!fits(this.board, this.active)) { this.active = null; this.status = 'over'; }
+    const incoming=this.next;this.next=this.draw();this.receive(incoming);this.holdUsed=false;
   }
 }

@@ -45,9 +45,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 - [ ] Phase 2 — Modern controls
     - [ ] Milestone 2.1 — Modern play and session configuration
-        - [ ] T-009 — Add seven bag and hold lifecycle
+        - [x] T-009 — Add seven bag and hold lifecycle
             Depends on: T-008 and phase 1 integrated/released.
             Scope and evidence: src/game.ts and unit checks; R-03. RED/GREEN for bag membership, queue consumption, one-hold-per-lock, swap/reset and disabled hold.
+            Verified result: [T-009](reports/phases/2/T-009.md).
         - [ ] T-010 — Add wall kicks shared ghost and hard drop
             Depends on: T-009.
             Scope and evidence: src/model.ts, game, renderer and tests; R-02–04. RED/GREEN for ordered kicks, landing agreement, dynamic midline, drop scoring and both hard-drop lock policies.

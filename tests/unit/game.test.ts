@@ -51,7 +51,7 @@ test('four simultaneous row clears use the pre-clear level and update speed', ()
 });
 test('a long frame preserves gravity then grounding then lock event order', () => {
   const game=started();ground(game,17);game.advance(1600);assert.equal(occupied(game),4);
-  assert.equal(game.active!.y,0);assert.equal(game.active!.type,'I');
+  assert.equal(game.active!.y,0);assert.equal(game.active!.type,'J');
 });
 test('blocked spawn ends the round without overwriting settled cells', () => {
   const game=started();for(let x=3;x<7;x++)game.board[1][x]='Z';ground(game);

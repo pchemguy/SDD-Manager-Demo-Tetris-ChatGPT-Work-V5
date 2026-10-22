@@ -27,3 +27,7 @@ Boundary report: [PHASE-REPORT.md](reports/phases/1/PHASE-REPORT.md).
 Publish/read back T-008 and close issue 17, then close native milestone 4 and audit all eight phase task commits. Integrate phase 1 into refreshed main with two parents and merged checks, publish/read back it, then prepare/publish/read back v0.1.0 before activating phase 2.
 
 Publish/read back each commit before further task work; task result, evidence and initial completion checkbox stay together. Close task issue after publication, then eligible native milestone after all associated issues close. Integrate a complete phase with an explicit two-parent merge, required merged checks and remote readback; publish matching version/tag/release notes before successor activation. This handoff cannot prove its own subsequent publication.
+
+## Phase 2 entry
+
+v0.1.0 is published at a908861ba877a906f2bff32ba7a4bbcc5687d963 with exact note/tag/latest readback (release 420598164). All eight phase 1 tasks and milestones are closed, its explicit integration is verified. Phase 2 label/milestones 5 and 6 and task issues 18–22 are projected/read back. Current branch phase/2-modern-controls starts from that release source and targets main. T-009 owns this entry and seven-bag/hold engine increment; later task and review evidence supersedes the preceding phase-1 checkpoint. Full-range authority remains unchanged.
