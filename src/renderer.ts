@@ -1,5 +1,5 @@
 /** Canvas presentation only: board mutation and geometry remain in the domain. */
-import { COLORS, cells, spawn, type Piece, type PieceType } from './model.ts';
+import { COLORS, cells, spawn, ghostVisible, type Piece, type PieceType } from './model.ts';
 import type { Game } from './game.ts';
 function block(context: CanvasRenderingContext2D, x: number, y: number, size: number, color: string): void {
   context.fillStyle=color;context.fillRect(x+1,y+1,size-2,size-2);
@@ -15,6 +15,15 @@ export function drawBoard(canvas: HTMLCanvasElement, game: Game): void {
   for(let x=1;x<10;x++){context.beginPath();context.moveTo(x*size,0);context.lineTo(x*size,canvas.height);context.stroke();}
   for(let y=1;y<20;y++){context.beginPath();context.moveTo(0,y*size);context.lineTo(canvas.width,y*size);context.stroke();}
   game.board.forEach((row,y)=>row.forEach((type,x)=>{if(type)block(context,x*size,y*size,size,COLORS[type]);}));
+  const ghost=game.ghost;
+  if(ghostVisible(ghost,game.ghostMode)&&ghost){
+    context.fillStyle=COLORS[ghost.type];context.strokeStyle=COLORS[ghost.type];
+    for(const [x,y] of cells(ghost)){
+      context.globalAlpha=.14;context.fillRect(x*size+2,y*size+2,size-4,size-4);
+      context.globalAlpha=.65;context.strokeRect(x*size+2,y*size+2,size-4,size-4);
+    }
+    context.globalAlpha=1;
+  }
   if(game.active)piece(context,game.active,size);
 }
 export function drawPreview(canvas: HTMLCanvasElement, type: PieceType | null): void {

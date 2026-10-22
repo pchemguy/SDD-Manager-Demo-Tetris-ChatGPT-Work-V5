@@ -1,5 +1,5 @@
 /** Deterministic round state and continuous-grounding simulation, independent of the DOM. */
-import { WIDTH, TYPES, cells, fits, emptyBoard, spawn, type Board, type Piece, type PieceType } from './model.ts';
+import { WIDTH, TYPES, KICKS, landing, cells, fits, emptyBoard, spawn, type Board, type Piece, type PieceType } from './model.ts';
 export type Status = 'ready' | 'running' | 'paused' | 'over';
 export class Game {
   board: Board = emptyBoard();
@@ -8,6 +8,10 @@ export class Game {
   status: Status = 'ready';
   held: {type:PieceType} | null = null;
   holdEnabled = true;
+  hardDropEnabled = true;
+  dropLock: 'follow'|'instant' = 'follow';
+  lockPolicy: 'interval'|'failed' = 'interval';
+  ghostMode: 'hide'|'dynamic'|'show' = 'show';
   score = 0;
   rows = 0;
   private random: () => number;
@@ -40,7 +44,21 @@ export class Game {
     return this.place({ ...this.active, x: this.active.x + direction });
   }
   rotate(): boolean {
-    return this.active ? this.place({ ...this.active, rotation: (this.active.rotation + 1) % 4 }) : false;
+    if(!this.active)return false;
+    const rotated={...this.active,rotation:(this.active.rotation+1)%4};
+    for(const [dx,dy] of KICKS)if(this.place({...rotated,x:rotated.x+dx,y:rotated.y+dy}))return true;
+    return false;
+  }
+  get ghost(): Piece | null {
+    if(!this.active)return null;const y=landing(this.board,this.active);
+    return y===null?null:{...this.active,y};
+  }
+  hardDrop(): boolean {
+    if(this.status!=='running'||!this.active||!this.hardDropEnabled)return false;
+    const projected=this.ghost;if(!projected)return false;
+    const distance=projected.y-this.active.y;
+    if(!this.place(projected))return false;
+    this.score+=2*distance;if(this.dropLock==='instant')this.lock();return true;
   }
   hold(): boolean {
     if(this.status!=='running'||!this.active||!this.holdEnabled||this.holdUsed)return false;
@@ -58,12 +76,13 @@ export class Game {
       const grounded = this.grounded;
       if (!grounded) this.lockElapsed = 0;
       const interval = this.interval;
+      const timed=grounded&&this.lockPolicy==='interval';
       const step = Math.min(remaining, Math.max(0, interval - this.fallElapsed),
-        grounded ? Math.max(0, interval - this.lockElapsed) : Infinity);
+        timed ? Math.max(0, interval - this.lockElapsed) : Infinity);
       this.fallElapsed += step;
-      if (grounded) this.lockElapsed += step;
+      if (timed) this.lockElapsed += step;
       remaining -= step;
-      if (grounded && this.lockElapsed >= interval) { this.lock(); continue; }
+      if (timed && this.lockElapsed >= interval) { this.lock(); continue; }
       if (this.fallElapsed >= interval) { this.fallElapsed = 0; this.down(false); }
     }
   }
@@ -93,6 +112,7 @@ export class Game {
     if (!this.active) return false;
     const moved = this.place({ ...this.active, y: this.active.y + 1 });
     if (moved && soft) this.score++;
+    if(!moved&&this.status==='running'&&this.lockPolicy==='failed'&&this.grounded)this.lock();
     return moved;
   }
   private lock(): void {

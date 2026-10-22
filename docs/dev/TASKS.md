@@ -49,9 +49,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-008 and phase 1 integrated/released.
             Scope and evidence: src/game.ts and unit checks; R-03. RED/GREEN for bag membership, queue consumption, one-hold-per-lock, swap/reset and disabled hold.
             Verified result: [T-009](reports/phases/2/T-009.md).
-        - [ ] T-010 — Add wall kicks shared ghost and hard drop
+        - [x] T-010 — Add wall kicks shared ghost and hard drop
             Depends on: T-009.
             Scope and evidence: src/model.ts, game, renderer and tests; R-02–04. RED/GREEN for ordered kicks, landing agreement, dynamic midline, drop scoring and both hard-drop lock policies.
+            Verified result: [T-010](reports/phases/2/T-010.md).
         - [ ] T-011 — Expose six live session settings
             Depends on: T-010.
             Scope and evidence: src/settings.ts, main/style and tests; R-06. Validated defaults, controls, enablement/policy changes, form focus and both-browser modern interaction; update user guidance.

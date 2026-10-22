@@ -63,7 +63,7 @@ test('restart clears round state and returns to running', () => {
   assert.equal(game.status,'running');assert.equal(game.score,0);assert.equal(game.rows,0);assert.equal(occupied(game),0);assert.equal(game.active!.y,0);
 });
 test('invalid elapsed values and illegal rotations leave state unchanged', () => {
-  const game=started();game.active={type:'I',rotation:1,x:-2,y:0};const before=JSON.stringify(game);
+  const game=started();game.active={type:'I',rotation:1,x:-2,y:0};for(let y=2;y<4;y++)for(let x=1;x<10;x++)game.board[y][x]='J';const before=JSON.stringify(game);
   assert.equal(game.rotate(),false);for(const elapsed of [-1,NaN,Infinity])game.advance(elapsed);
   assert.equal(JSON.stringify(game),before);
 });
