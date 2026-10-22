@@ -91,7 +91,7 @@ document.addEventListener('keydown',event=>{
 });
 for(const key of KEYS){
   const control=element<HTMLSelectElement>('setting-'+key);control.value=game.settings[key];
-  control.addEventListener('change',()=>{if(settingsStore.select(key,control.value))act(()=>game.configure(settingsStore.current),false);});
+  control.addEventListener('change',()=>act(()=>{if(settingsStore.select(key,control.value))game.configure(settingsStore.current);},false));
 }
 window.addEventListener('blur',()=>{if(game.status==='running')act(()=>game.togglePause(),false);});
 function frame(now:number):void{game.advance(now-previous);previous=now;render();requestAnimationFrame(frame);}

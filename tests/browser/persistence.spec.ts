@@ -65,3 +65,25 @@ test('malformed cookies and invalid or repeated URL values affect only their set
   const url=new URL(page.url());expect(url.searchParams.getAll('ghost')).toEqual(['dynamic']);expect(url.searchParams.get('next')).toBe('');expect(url.hash).toBe('#play');
   expect((await context.cookies(base)).find(cookie=>cookie.name==='unrelated')?.value).toBe('keep');
 });
+test('setting changes capture the command clock before slow persistence effects',async({page,context})=>{
+  await page.addInitScript(()=>{
+    let now=0;
+    Object.defineProperty(performance,'now',{value:()=>now});
+    window.requestAnimationFrame=callback=>{(window as any).__pendingFrame=callback;return 1;};
+    const replace=history.replaceState.bind(history);
+    history.replaceState=(...args)=>{now+=200;replace(...args);};
+  });
+  await page.goto('/?lock=failed');await page.getByRole('button',{name:'Start game',exact:true}).click();
+  await page.evaluate(()=>{
+    const {game,render}=window.__tetris;game.restart();game.active={type:'O',rotation:0,x:4,y:18};game.advance(700);render();
+  });
+  await page.getByLabel('General locking',{exact:true}).selectOption('interval');
+  expect(await page.evaluate(()=>window.__tetris.game.board.flat().filter(Boolean).length)).toBe(0);
+  expect(await page.evaluate(()=>window.__tetris.game.active)).toEqual({type:'O',rotation:0,x:4,y:18});
+  expect((await saved(context)).lock).toBe('interval');expect(new URL(page.url()).searchParams.getAll('lock')).toEqual(['interval']);
+  // The new policy owns the 200 ms spent in history, then the remaining 600 ms.
+  await page.evaluate(()=>{(window as any).__pendingFrame(performance.now());window.__tetris.game.advance(599);window.__tetris.render();});
+  expect(await page.evaluate(()=>window.__tetris.game.board.flat().filter(Boolean).length)).toBe(0);
+  await page.evaluate(()=>{window.__tetris.game.advance(1);window.__tetris.render();});
+  expect(await page.evaluate(()=>window.__tetris.game.board.flat().filter(Boolean).length)).toBe(4);
+});
