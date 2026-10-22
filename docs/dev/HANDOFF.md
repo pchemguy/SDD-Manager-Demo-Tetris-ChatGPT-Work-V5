@@ -1,6 +1,6 @@
 # Project handoff
 
-Checkpoint: T-007 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
+Checkpoint: T-008 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
 
 ## Workflow and sources
 
@@ -13,16 +13,17 @@ Main development under sdd-implement; all four phases remain within accepted sco
 - Tracking is enabled by root AGENTS; reporting is Standard. GitHub app reads work, but app issue writes were denied; supplied repository-token API access completed authorized tracking. Credentials are excluded and supplied separately on a fresh clone.
 
 
+
 ## Branch and source
 
-Current branch `phase/1-classic-baseline` targets main; branch-off `0dcd660c68c22717617f4f931f2be9f96d3c5add`. Reviewed published source `52d8bd75592341f9a8b7446ca5145b7d7535eac7` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
+Current branch `phase/1-classic-baseline` targets main; branch-off `0dcd660c68c22717617f4f931f2be9f96d3c5add`. Reviewed published source `ceafd728b38715a78a8d2326a05d017139f6c893` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
 
 ## Current boundary and next action
 
-Independent UI review and repair recheck resolved two clock/input blockers and two accessibility/test-harness findings. All 28 unit, 18 browser, type/build checks pass; final environment adjustment separately reran type and both-browser checks. Native keys, controlled-time pause, repeat default prevention, unchanged status and page-error assertions are covered. No TODO; HANDOFF refreshed.
+Phase 1 exits and whole net change reviewed; milestone findings resolved with no remaining TODO. Fresh 28-unit/18-browser/type/build checks passed; production hook absent and documentation links valid. Seven prior task closing commits pass persistence audit; delivery milestones 2/3 read back closed. HANDOFF refreshed; final own-commit audit, phase-review milestone closure, explicit integration and v0.1.0 release follow.
 
-Boundary report: [1.2.md](reports/phases/1/1.2.md).
+Boundary report: [PHASE-REPORT.md](reports/phases/1/PHASE-REPORT.md).
 
-Publish/read back T-007 and close issue 16, then close native milestone 3. Execute T-008 phase review after milestones 2 and 3 are confirmed closed; phase 1 integration/release remains pending.
+Publish/read back T-008 and close issue 17, then close native milestone 4 and audit all eight phase task commits. Integrate phase 1 into refreshed main with two parents and merged checks, publish/read back it, then prepare/publish/read back v0.1.0 before activating phase 2.
 
 Publish/read back each commit before further task work; task result, evidence and initial completion checkbox stay together. Close task issue after publication, then eligible native milestone after all associated issues close. Integrate a complete phase with an explicit two-parent merge, required merged checks and remote readback; publish matching version/tag/release notes before successor activation. This handoff cannot prove its own subsequent publication.

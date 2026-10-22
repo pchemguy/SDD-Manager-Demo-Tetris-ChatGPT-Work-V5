@@ -4,7 +4,7 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 ## Phase 1 — Classic baseline
 
-- [ ] Phase 1 — Classic baseline
+- [x] Phase 1 — Classic baseline
     - [x] Milestone 1.1 — Verified game foundation
         - [x] T-001 — Establish pinned tooling and isolated browser capability
             Depends on: none.
@@ -35,10 +35,11 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-005, T-006.
             Scope and evidence: Whole classic UI/integration code review, required regressions, docs/dev/reports/phases/1/1.2.md, TODO assessment and HANDOFF refresh.
             Verified result: [T-007](reports/phases/1/T-007.md).
-    - [ ] Milestone 1.3 — Phase review
-        - [ ] T-008 — Review test and report phase 1
+    - [x] Milestone 1.3 — Phase review
+        - [x] T-008 — Review test and report phase 1
             Depends on: Milestones 1.1 and 1.2 complete and closed.
             Scope and evidence: Review phase exits/code and all classic regressions, persistence audit, docs/dev/reports/phases/1/PHASE-REPORT.md and HANDOFF. No modern capability claim.
+            Verified result: [T-008](reports/phases/1/T-008.md).
 
 ## Phase 2 — Modern controls
 
