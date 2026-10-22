@@ -10,9 +10,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: none.
             Scope and evidence: Root package/lock/TS/Playwright config and scripts; R-09. Verify locked installation, both managed browser versions, two isolated interaction/render/teardown cycles per browser, actual runner wiring and central-policy diagnostics. Record setup provenance and limits.
             Verified result: [T-001](reports/phases/1/T-001.md).
-        - [ ] T-002 — Implement tetromino geometry and normal placement
+        - [x] T-002 — Implement tetromino geometry and normal placement
             Depends on: T-001.
             Scope and evidence: src/model.ts and focused unit checks; R-01/R-08. Observe RED/GREEN for seven four-cell types, rotations, bounds, collision and normal landing.
+            Verified result: [T-002](reports/phases/1/T-002.md).
         - [ ] T-003 — Implement deterministic classic session and interval locking
             Depends on: T-002.
             Scope and evidence: src/game.ts and unit checks; R-01–02/R-08. Observe RED/GREEN for movement, gravity, exact grounding deadline, reset/pause, clear/scoring/level and blocked spawn.
