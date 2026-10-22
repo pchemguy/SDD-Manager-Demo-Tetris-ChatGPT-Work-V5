@@ -40,3 +40,10 @@ test('hold rejects paused input and blocked received spawn ends without overwrit
   assert.equal(game.hold(),true);assert.equal(game.status,'over');assert.equal(game.active,null);
   assert.equal(game.board.flat().filter(Boolean).length,1);assert.equal(game.board[0][3],'Z');
 });
+test('injected seeded sources reproduce bag order and different sources change it',()=>{
+  function sequence(seed:number):string[]{
+    const game=new Game(()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/2**32;});game.start();
+    const output:string[]=[];for(let i=0;i<21;i++){output.push(game.active!.type);game.board=emptyBoard();lockCurrent(game);}return output;
+  }
+  assert.deepEqual(sequence(17),sequence(17));assert.notDeepEqual(sequence(17),sequence(31));
+});

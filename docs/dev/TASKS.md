@@ -44,7 +44,7 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 ## Phase 2 — Modern controls
 
 - [ ] Phase 2 — Modern controls
-    - [ ] Milestone 2.1 — Modern play and session configuration
+    - [x] Milestone 2.1 — Modern play and session configuration
         - [x] T-009 — Add seven bag and hold lifecycle
             Depends on: T-008 and phase 1 integrated/released.
             Scope and evidence: src/game.ts and unit checks; R-03. RED/GREEN for bag membership, queue consumption, one-hold-per-lock, swap/reset and disabled hold.
@@ -57,9 +57,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-010.
             Scope and evidence: src/settings.ts, main/style and tests; R-06. Validated defaults, controls, enablement/policy changes, form focus and both-browser modern interaction; update user guidance.
             Verified result: [T-011](reports/phases/2/T-011.md).
-        - [ ] T-012 — Review test and report milestone 2.1
+        - [x] T-012 — Review test and report milestone 2.1
             Depends on: T-009, T-010, T-011.
             Scope and evidence: Modern-command/settings code review and regressions; docs/dev/reports/phases/2/2.1.md, TODO assessment and HANDOFF refresh.
+            Verified result: [T-012](reports/phases/2/T-012.md).
     - [ ] Milestone 2.2 — Phase review
         - [ ] T-013 — Review test and report phase 2
             Depends on: Milestone 2.1 complete and closed.

@@ -1,6 +1,6 @@
 # Project handoff
 
-Checkpoint: T-008 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
+Checkpoint: T-012 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
 
 ## Workflow and sources
 
@@ -14,20 +14,17 @@ Main development under sdd-implement; all four phases remain within accepted sco
 
 
 
+
 ## Branch and source
 
-Current branch `phase/1-classic-baseline` targets main; branch-off `0dcd660c68c22717617f4f931f2be9f96d3c5add`. Reviewed published source `ceafd728b38715a78a8d2326a05d017139f6c893` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
+Current branch `phase/2-modern-controls` targets main; branch-off `a908861ba877a906f2bff32ba7a4bbcc5687d963`. Reviewed published source `4edff19b715ac6cbe39893efd4be893936453b4e` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
 
 ## Current boundary and next action
 
-Phase 1 exits and whole net change reviewed; milestone findings resolved with no remaining TODO. Fresh 28-unit/18-browser/type/build checks passed; production hook absent and documentation links valid. Seven prior task closing commits pass persistence audit; delivery milestones 2/3 read back closed. HANDOFF refreshed; final own-commit audit, phase-review milestone closure, explicit integration and v0.1.0 release follow.
+Independent read-only modern-control/settings review found no blocker. Minor random-source coverage gap resolved with same-seed reproducibility and differing-seed order checks. 48 unit checks/type pass after addition; reviewed production source passed 24 browser checks/build, with inspected screenshots and absent production hook. No TODO; HANDOFF refreshed.
 
-Boundary report: [PHASE-REPORT.md](reports/phases/1/PHASE-REPORT.md).
+Boundary report: [2.1.md](reports/phases/2/2.1.md).
 
-Publish/read back T-008 and close issue 17, then close native milestone 4 and audit all eight phase task commits. Integrate phase 1 into refreshed main with two parents and merged checks, publish/read back it, then prepare/publish/read back v0.1.0 before activating phase 2.
+Publish/read back T-012 and close issue 21, then close native milestone 5. Execute T-013 phase review, final persistence audit, explicit phase integration and v0.2.0 release before phase 3 activation.
 
 Publish/read back each commit before further task work; task result, evidence and initial completion checkbox stay together. Close task issue after publication, then eligible native milestone after all associated issues close. Integrate a complete phase with an explicit two-parent merge, required merged checks and remote readback; publish matching version/tag/release notes before successor activation. This handoff cannot prove its own subsequent publication.
-
-## Phase 2 entry
-
-v0.1.0 is published at a908861ba877a906f2bff32ba7a4bbcc5687d963 with exact note/tag/latest readback (release 420598164). All eight phase 1 tasks and milestones are closed, its explicit integration is verified. Phase 2 label/milestones 5 and 6 and task issues 18–22 are projected/read back. Current branch phase/2-modern-controls starts from that release source and targets main. T-009 owns this entry and seven-bag/hold engine increment; later task and review evidence supersedes the preceding phase-1 checkpoint. Full-range authority remains unchanged.
