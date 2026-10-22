@@ -14,9 +14,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-001.
             Scope and evidence: src/model.ts and focused unit checks; R-01/R-08. Observe RED/GREEN for seven four-cell types, rotations, bounds, collision and normal landing.
             Verified result: [T-002](reports/phases/1/T-002.md).
-        - [ ] T-003 — Implement deterministic classic session and interval locking
+        - [x] T-003 — Implement deterministic classic session and interval locking
             Depends on: T-002.
             Scope and evidence: src/game.ts and unit checks; R-01–02/R-08. Observe RED/GREEN for movement, gravity, exact grounding deadline, reset/pause, clear/scoring/level and blocked spawn.
+            Verified result: [T-003](reports/phases/1/T-003.md).
         - [ ] T-004 — Review test and report milestone 1.1
             Depends on: T-001, T-002, T-003.
             Scope and evidence: Read-only domain/tooling code review, required unit/type checks, blocker repair, TODO assessment, docs/dev/reports/phases/1/1.1.md and HANDOFF refresh.
