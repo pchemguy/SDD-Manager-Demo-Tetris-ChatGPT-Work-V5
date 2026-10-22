@@ -37,7 +37,7 @@ The running SDD Manager package's `assets/DOCS_TRACKING_TEMPLATE.json` supplies 
 - [x] DOCS-007 — Prepare and accept layout.
     - Allocate source, tests, documentation and artifacts to physical paths consistently with the accepted design and PLAN.
     - Review layout against the design and PLAN, update the PLAN review report, then present layout for human approval.
-- [ ] DOCS-008 — Prepare and accept TASKS.
+- [x] DOCS-008 — Prepare and accept TASKS.
     - Derive executable tasks, dependencies and required milestone/phase review units from accepted SPEC, PLAN and layout.
     - Complete required task-list QC and its human acceptance checkpoint. Do not start implementation or project implementation-phase objects yet.
 - [ ] DOCS-009 — Pass documentation package QC.
@@ -114,3 +114,7 @@ PLAN strategy QC passed against SPEC/design with source identities and complete 
 ## DOCS-007 acceptance
 
 Combined PLAN/layout QC passed: all architectural components, tests, browser resources, artifacts and evidence have physical owners with directed dependencies. The adjacent PLAN report retains the initial strategy assessment and appends Revision 1 with exact current source identities. Ready for TASKS; no unresolved allocation blocker. Accepted under the user's 2026-10-22 preapproval.
+
+## DOCS-008 acceptance
+
+TASKS/PLAN QC passed with exact source identities: 21 unique tasks, four phases, five delivery milestones, each final milestone review, and four dedicated one-task phase review milestones. Counts 3/2/3/2/2 delivery tasks are assessed with explicit small-group rationale. Scope, dependencies, accepted contracts, physical owners, test-first evidence, browser proof, docs and final TODO aggregation are covered; no unresolved finding remains. Accepted under the user's 2026-10-22 preapproval.
