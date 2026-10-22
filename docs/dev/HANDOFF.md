@@ -1,13 +1,10 @@
 # Project handoff
 
-Checkpoint: main preparation integrated; target publication and milestone closure require confirmation.
-Outcome: accepted design/SPEC/PLAN/layout/TASKS and passing package QC. No implementation has begun. Recover later work from Git, the owning lists and hosted readback; this snapshot cannot establish its later push or merge.
+Checkpoint: milestone 1.1 reviewed; T-004 publication and native milestone closure follow this commit.
 
 ## Workflow and sources
 
-- Workflow/stage/owner: main development; preparation finalization, `sdd-manage`; next execution owner `sdd-implement`.
-- Governing sources: [PROJECT](PROJECT.md), [ARCHITECTURE](ARCHITECTURE.md), [DECOMPOSITION](DECOMPOSITION.md), [SPEC](SPEC.md), [PLAN](PLAN.md), [layout](layout.md), [TASKS](TASKS.md), [DOCS_TASKS](DOCS_TASKS.md), [package QC](DOCS-QC-REPORT.md) and adjacent root QC reports.
-- Instructions: root [AGENTS](../../AGENTS.md), [browser policy](../../BROWSER_DEV_POLICY.md) and Windows-only shell policy. Actual host: Linux, Node 24, Python 3.12, Git. Installed SDD Manager 0.15.2; repository package 0.15.1 with matching skill entries.
+Main development, bounded implementation under sdd-implement. Governing sources: [PROJECT](PROJECT.md), [ARCHITECTURE](ARCHITECTURE.md), [SPEC](SPEC.md), [PLAN](PLAN.md), [layout](layout.md), [TASKS](TASKS.md) and root [AGENTS](../../AGENTS.md). Installed SDD Manager 0.15.2; repository package 0.15.1. Actual host Linux; Node 24.19.0, isolated headless Chromium 141.0.7390.37 and patched Firefox 142.0.1. Host-specific Firefox content-sandbox workaround is confined to trusted localhost testing; see T-001 evidence and BROWSER_DEV_POLICY.
 
 ## Authority and decisions
 
@@ -15,25 +12,12 @@ Outcome: accepted design/SPEC/PLAN/layout/TASKS and passing package QC. No imple
 - Authorized range: all TASKS phases 1–4, ending with full-scope v1.0.0 and verified GitHub release. Stop only on a genuine unresolved technical/authority blocker. QC, tracking, one task per result/evidence/initial-checkbox commit, per-commit publication and explicit integration remain required.
 - Tracking is enabled by root AGENTS; reporting is Standard. GitHub app reads work, but app issue writes were denied; supplied repository-token API access completed authorized tracking. Credentials are excluded and supplied separately on a fresh clone.
 
-## Branches and return
+## Branch and verified progress
 
-- Working branch: `design-docs/main`; creation parent and target: actual default `main`, `origin`, pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work-V5.
-- Branch-off commit: `70ede2fe4f8db3fc0357df4c74fca944c0a7652e`.
-- No suspended parent. Preserve the documentation branch after complete integration.
+Preparation merge 0dcd660c68c22717617f4f931f2be9f96d3c5add is published; documentation milestone 1 is closed. Current branch phase/1-classic-baseline starts from that main commit and targets main. T-001–003 are individually published with issues 10–12 closed. Phase 1 native milestones are 2/3/4 and task issues 10–17. No future phase is activated.
 
-## Pending effects and next action
+## Current boundary and next action
 
-- Confirm this DOCS-009 commit's push/readback and final issue closure. DOCS-001–008 issues were verified closed; milestone 1 stays open until documentation integration is verified and published.
-- Explicitly merge the accepted package into refreshed main, check the merged package and two parents, publish/read back main, then close/read back `sdd-docs-main`.
-- Activate only phase 1: create/read back its phase label, native milestones and all task associations. Branch from the verified preparation merge to `phase/1-classic-baseline`, recording its actual starting SHA.
-- Execute one task at a time through review and issue/milestone closure. Integrate/release each complete phase before activating its successor. Browser provisioning follows the central policy; no existing installation or application behavior is assumed verified.
+[Milestone 1.1 review](reports/phases/1/1.1.md) records foundation review, 28 passing unit checks, type checks and four passing environment cycles. Cancellation cleanup and partial-clear findings were repaired; no outstanding TODO. This is engine/tooling evidence; playable UI is pending T-005–006.
 
-Detailed progress after this checkpoint belongs in TASKS and phase task/boundary evidence. Refresh this record at each milestone and phase review.
-
-## Preparation integration
-
-Explicit two-parent integration: source `600fb7e4bdfbfa5b6eb742713f41615a7c1dba12` from `design-docs/main` into main parent `70ede2fe4f8db3fc0357df4c74fca944c0a7652e`. Merged document/checklist/whitespace checks passed. All nine DOCS issues were read back closed. Confirm this merge's publication, then close milestone 1 and activate phase 1 under the existing full-range grant.
-
-## Phase 1 activation
-
-Preparation merge `0dcd660c68c22717617f4f931f2be9f96d3c5add` is published and milestone 1 is closed. Phase 1 label, native milestones 2/3/4 and task issues 10–17 were created and read back with associations. Working branch `phase/1-classic-baseline` starts from that main commit. T-001 owns this entry/setup update; all 21 tasks remain authorized under the user's full-range preapproval.
+Publish/read back the owning T-004 commit, close/read back issue 13, then close native milestone 2 after all four task issues are confirmed closed. Continue T-005 through the full authorized task range. Every task requires result/evidence/initial checkbox together, verified publication before further task work, and hosted closure. Refresh this handoff at each review. Complete and integrate each phase with explicit two-parent merge and merged checks, then publish its versioned GitHub release before successor activation. Recover later effects from Git and hosted readback; this checkpoint cannot prove its own later publication.

@@ -5,7 +5,7 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 ## Phase 1 — Classic baseline
 
 - [ ] Phase 1 — Classic baseline
-    - [ ] Milestone 1.1 — Verified game foundation
+    - [x] Milestone 1.1 — Verified game foundation
         - [x] T-001 — Establish pinned tooling and isolated browser capability
             Depends on: none.
             Scope and evidence: Root package/lock/TS/Playwright config and scripts; R-09. Verify locked installation, both managed browser versions, two isolated interaction/render/teardown cycles per browser, actual runner wiring and central-policy diagnostics. Record setup provenance and limits.
@@ -18,9 +18,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-002.
             Scope and evidence: src/game.ts and unit checks; R-01–02/R-08. Observe RED/GREEN for movement, gravity, exact grounding deadline, reset/pause, clear/scoring/level and blocked spawn.
             Verified result: [T-003](reports/phases/1/T-003.md).
-        - [ ] T-004 — Review test and report milestone 1.1
+        - [x] T-004 — Review test and report milestone 1.1
             Depends on: T-001, T-002, T-003.
             Scope and evidence: Read-only domain/tooling code review, required unit/type checks, blocker repair, TODO assessment, docs/dev/reports/phases/1/1.1.md and HANDOFF refresh.
+            Verified result: [T-004](reports/phases/1/T-004.md).
     - [ ] Milestone 1.2 — Playable browser experience
         - [ ] T-005 — Render a playable classic game with native controls
             Depends on: T-004.

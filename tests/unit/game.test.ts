@@ -67,3 +67,15 @@ test('invalid elapsed values and illegal rotations leave state unchanged', () =>
   assert.equal(game.rotate(),false);for(const elapsed of [-1,NaN,Infinity])game.advance(elapsed);
   assert.equal(JSON.stringify(game),before);
 });
+for (const [count, score] of [[1,100],[2,300],[3,500]]) test(`${count} cleared rows preserve retained order and upper padding`, () => {
+  const game=started();game.board[0][0]='S';game.board[10][9]='L';
+  for(let y=20-count;y<20;y++)for(let x=0;x<10;x++) {
+    game.board[y][x]=(count===1 ? x>=3&&x<=6 : count===2 ? x===4||x===5 : x===4)?null:'J';
+  }
+  game.active=count===1?{type:'I',rotation:0,x:3,y:18}:count===2?{type:'O',rotation:0,x:4,y:18}:{type:'I',rotation:1,x:2,y:16};
+  game.advance(800);
+  assert.equal(game.score,score);assert.equal(game.rows,count);
+  const expected=Array.from({length:20},()=>Array(10).fill(null));
+  expected[count][0]='S';expected[10+count][9]='L';if(count===3)expected[19][4]='I';
+  assert.deepEqual(game.board,expected);
+});
