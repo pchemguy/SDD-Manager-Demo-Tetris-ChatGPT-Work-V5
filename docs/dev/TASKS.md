@@ -97,9 +97,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-017 and phase 3 integrated/released.
             Scope and evidence: src/settings.ts and controlled-adapter unit checks; R-07. RED/GREEN for all six precedence paths, explicit defaults, omitted/invalid/repeated values, change writes and storage/URL failures.
             Verified result: [T-018](reports/phases/4/T-018.md).
-        - [ ] T-019 — Integrate reload persistence and complete user guidance
+        - [x] T-019 — Integrate reload persistence and complete user guidance
             Depends on: T-018.
             Scope and evidence: main, browser suites and README; R-07/R-09. Real cookies, parameter preservation, reload/reopen and six-setting controls in both browsers; complete regression and production build.
+            Verified result: [T-019](reports/phases/4/T-019.md).
         - [ ] T-020 — Review test and report milestone 4.1
             Depends on: T-018, T-019.
             Scope and evidence: Persistence/UI code review, all contract regression, docs/dev/reports/phases/4/4.1.md, TODO assessment and HANDOFF refresh.
