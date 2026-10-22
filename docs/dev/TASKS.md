@@ -43,7 +43,7 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 ## Phase 2 — Modern controls
 
-- [ ] Phase 2 — Modern controls
+- [x] Phase 2 — Modern controls
     - [x] Milestone 2.1 — Modern play and session configuration
         - [x] T-009 — Add seven bag and hold lifecycle
             Depends on: T-008 and phase 1 integrated/released.
@@ -61,10 +61,11 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-009, T-010, T-011.
             Scope and evidence: Modern-command/settings code review and regressions; docs/dev/reports/phases/2/2.1.md, TODO assessment and HANDOFF refresh.
             Verified result: [T-012](reports/phases/2/T-012.md).
-    - [ ] Milestone 2.2 — Phase review
-        - [ ] T-013 — Review test and report phase 2
+    - [x] Milestone 2.2 — Phase review
+        - [x] T-013 — Review test and report phase 2
             Depends on: Milestone 2.1 complete and closed.
             Scope and evidence: Cross-feature timing/hold/ghost/drop and both-browser review, persistence audit, docs/dev/reports/phases/2/PHASE-REPORT.md and HANDOFF. No persistence or penetrator claim.
+            Verified result: [T-013](reports/phases/2/T-013.md).
 
 ## Phase 3 — Penetrator play
 
