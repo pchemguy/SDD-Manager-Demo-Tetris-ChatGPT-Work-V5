@@ -22,7 +22,7 @@ The running SDD Manager package's `assets/DOCS_TRACKING_TEMPLATE.json` supplies 
 - [x] DOCS-002 — Prepare and accept PROJECT.
     - Establish the project brief: purpose, users, outcomes, scope, non-goals and consequential constraints; identify material assumptions and unresolved decisions.
     - Review the proposal with the human and complete its acceptance checkpoint.
-- [ ] DOCS-003 — Prepare and accept ARCHITECTURE.
+- [x] DOCS-003 — Prepare and accept ARCHITECTURE.
     - Define major system blocks, relationships, dependency direction and consequential structural decisions from the accepted brief.
     - Review the proposal with the human and complete its acceptance checkpoint.
 - [ ] DOCS-004 — Prepare and accept DECOMPOSITION.
@@ -94,3 +94,7 @@ PROJECT proposal content identity: Git blob `b3bdcf3670e56cc958d05c8fcc0f8452fbf
 Owner review: checked coverage of baseline delivery, every enhancement, both lock-policy choices, midline behavior, penetrator bonus and landing invariants, all six controls, per-setting URL/cookie/default precedence, explicit-default cookie writes, omitted-parameter preservation, and phase releases. Material interaction choices are exposed as proposals for confirmation. PROJECT retains project intent and principal decisions; detailed scoring, input, configuration syntax and acceptance contracts are deferred to their owning SPEC stage.
 
 Verification scope: document coverage/consistency, local links, Markdown structure, unchanged initialization files, task state and staged Git whitespace checks. This proposal provides no gameplay, browser execution or release evidence. Root README now links the proposal, preparation progress, handoff, SDD Manager notice and disclosure without claiming implemented functionality.
+
+## ARCHITECTURE acceptance
+
+DOCS-003: reviewed major ownership, dependency direction, shared landing authority, deterministic time/randomness, settings failure isolation and browser resource ownership against the approved PROJECT. Accepted under the user's 2026-10-22 preapproval. No unresolved structural decision blocks DECOMPOSITION. The forward DECOMPOSITION link names the next planned document.
