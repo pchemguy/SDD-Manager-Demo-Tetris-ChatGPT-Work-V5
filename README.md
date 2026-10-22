@@ -1,6 +1,6 @@
 # Stack — browser Tetris
 
-A focused falling-block game for modern desktop browsers. Play with seven-bag randomization, hold, ghost projection, ordered wall kicks, hard drop, configurable locking, scoring and level progression. It runs entirely in your browser with no account or application backend.
+A focused falling-block game for modern desktop browsers. Play with seven-bag randomization, hold, ghost projection, ordered wall kicks, hard drop, configurable locking, penetrator bonuses, scoring and level progression. It runs entirely in your browser with no account or application backend.
 
 ## Run locally
 
@@ -15,13 +15,19 @@ Open the local URL printed by Vite. `npm run build` creates a static `dist/` dir
 
 ## Play
 
-Click **Start game**. Left/right moves; Up or X rotates clockwise; Down soft-drops; Space hard-drops; C holds; P or Escape pauses/resumes; R starts a new round. Enter starts from Ready or Game over. Buttons and form controls keep their own keyboard behavior; click the board to return to gameplay. Losing window focus pauses a running game.
+Click **Start game**. Left/right moves; Up or X rotates clockwise; Down soft-drops; Space hard-drops; C holds; E activates a penetrator when a bonus is available; P or Escape pauses/resumes; R starts a new round. Enter starts from Ready or Game over. Buttons and form controls keep their own keyboard behavior; click the board to return to gameplay. Losing window focus pauses a running game.
 
 A grounded piece locks after one full gravity interval. Movement or rotation while continuously grounded preserves that deadline; leaving support cancels it, and new grounding starts a full interval. Soft drop cannot shorten it. A clear scores 100/300/500/800 for one/two/three/four simultaneous rows, multiplied by the level before the clear. Successful soft drop scores one point per row; hard drop scores two per row traveled. Level increases every ten lines; gravity speeds up from 800 ms to a minimum of 80 ms.
 
 Hold is available once between locks. A swap resets the received piece to its spawn position/rotation with fresh timing. Turning hold off keeps its stored piece. Every complete bag contains each of the seven types once. Clockwise wall kicks try the current position, one cell left/right, two cells left/right, then one cell upward; this is the specified simple kick system.
 
 The ghost and hard drop use the same landing. Dynamic ghost mode hides a projection only when all of its occupied cells are above row 10; a projection straddling that midline remains visible.
+
+## Penetrators
+
+Clear four lines at once to earn one penetrator bonus; up to three unspent bonuses accumulate. The side panel shows one lightning symbol per bonus and a numeric count. Press E to spend one bonus on the current piece. Activation is one-way, ignores repeats and cannot spend again on an already active penetrator.
+
+A penetrator can cross settled cells without destroying them. Every accepted position must still have a legal non-overlapping landing at or below it. Gravity/soft drop traverse step by step; hard drop and ghost find the lowest safe position beyond blockers. Active and held penetrators are entirely white; regular pieces use their assigned colors. Hold preserves the ability without an extra charge or refund. The ability ends on lock; restart clears stock and held pieces.
 
 ## Configure this session
 
@@ -45,4 +51,4 @@ Tests launch the real Vite application in isolated contexts. The browser runner 
 
 ## Project records
 
-[Development plan](docs/dev/PLAN.md), [behavior contracts](docs/dev/SPEC.md), [tasks and verified evidence](docs/dev/TASKS.md), and [handoff](docs/dev/HANDOFF.md) describe the accepted phased scope. Penetrators and saved configuration are scheduled in later increments. See [AI disclosure](AI_DISCLOSURE.md) and [SDD Manager](SDD-MANAGER.md).
+[Development plan](docs/dev/PLAN.md), [behavior contracts](docs/dev/SPEC.md), [tasks and verified evidence](docs/dev/TASKS.md), and [handoff](docs/dev/HANDOFF.md) describe the accepted phased scope. Saved configuration is scheduled in the final increment. See [AI disclosure](AI_DISCLOSURE.md) and [SDD Manager](SDD-MANAGER.md).

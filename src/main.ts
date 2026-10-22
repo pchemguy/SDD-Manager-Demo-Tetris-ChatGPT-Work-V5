@@ -19,6 +19,7 @@ app.innerHTML=`
       <div class="card compact"><span class="eyebrow">LINES</span><strong id="lines">0</strong></div>
       <div class="card compact"><span class="eyebrow">LEVEL</span><strong id="level">1</strong></div>
       <div class="status-card"><span class="status-dot"></span><span id="status" aria-live="polite">Ready</span></div>
+      <section class="card bonus-card"><h2 class="eyebrow">PENETRATOR <kbd>E</kbd></h2><span id="bonus-symbols" aria-hidden="true"></span><span id="bonus-count" aria-live="polite">0 bonuses available</span><p id="penetrator-hint">Clear four lines. Press E to pass through blocks.</p></section>
     </aside>
     <section class="play-area" aria-label="Tetris game">
       <div class="board-wrap"><canvas id="board" width="300" height="600" tabindex="0" aria-label="Game board. Use arrow keys to move and rotate."></canvas>
@@ -29,7 +30,7 @@ app.innerHTML=`
     <aside class="side-panel" aria-label="Game options">
       <div class="previews"><section id="next-card" class="card"><h2 class="eyebrow">UP NEXT</h2><canvas id="next" width="96" height="72" aria-label="Next piece"></canvas></section><section id="hold-card" class="card"><h2 class="eyebrow">HOLD <kbd>C</kbd></h2><canvas id="held" width="96" height="72" aria-label="Held piece"></canvas><span id="held-label" class="preview-label">Empty</span></section></div>
       <section class="settings"><h2 class="eyebrow">YOUR GAME</h2>${settingsMarkup}</section>
-      <section class="controls"><h2 class="eyebrow">MAKE YOUR MOVE</h2><dl><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Move</dd><dt><kbd>↑</kbd> / <kbd>X</kbd></dt><dd>Rotate</dd><dt><kbd>↓</kbd></dt><dd>Soft drop</dd><dt><kbd>Space</kbd></dt><dd>Hard drop</dd><dt><kbd>C</kbd></dt><dd>Hold piece</dd><dt><kbd>P</kbd> / <kbd>Esc</kbd></dt><dd>Pause</dd></dl><p class="hint" id="lock-hint">A full gravity interval to settle.</p></section>
+      <section class="controls"><h2 class="eyebrow">MAKE YOUR MOVE</h2><dl><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Move</dd><dt><kbd>↑</kbd> / <kbd>X</kbd></dt><dd>Rotate</dd><dt><kbd>↓</kbd></dt><dd>Soft drop</dd><dt><kbd>Space</kbd></dt><dd>Hard drop</dd><dt><kbd>C</kbd></dt><dd>Hold piece</dd><dt><kbd>E</kbd></dt><dd>Penetrator</dd><dt><kbd>P</kbd> / <kbd>Esc</kbd></dt><dd>Pause</dd></dl><p class="hint" id="lock-hint">A full gravity interval to settle.</p></section>
     </aside>
   </div>
 </main><footer>ONE PIECE AT A TIME.<span>Your pace, your game</span></footer>`;
@@ -39,9 +40,12 @@ const names={ready:'Ready',running:'Playing',paused:'Paused',over:'Game over'};
 function text(id:string,value:string):void { const node=element(id);if(node.textContent!==value)node.textContent=value; }
 function render():void {
   drawBoard(board,game);drawPreview(element<HTMLCanvasElement>('next'),game.next);
-  drawPreview(element<HTMLCanvasElement>('held'),game.held?.type??null);
+  drawPreview(element<HTMLCanvasElement>('held'),game.held);
   element('next-card').hidden=game.settings.next==='off';element('hold-card').hidden=game.settings.hold==='off';
-  text('held-label',game.held?game.held.type+' piece':'Empty');
+  text('held-label',game.held?(game.held.penetrator?'Penetrator ':'')+game.held.type:'Empty');
+  text('bonus-symbols',Array(game.bonuses).fill('⚡').join(' '));
+  text('bonus-count',`${game.bonuses} ${game.bonuses===1?'bonus':'bonuses'} available`);
+  text('penetrator-hint',game.active?.penetrator?'Penetrator active until lock.':'Clear four lines. Press E to pass through blocks.');
   text('lock-hint',game.settings.lock==='interval'?'A full gravity interval to settle.':'Lock on the next failed downward attempt.');
   text('score',String(game.score));text('lines',String(game.rows));text('level',String(game.level));
   text('status',names[game.status]);
@@ -63,12 +67,13 @@ document.addEventListener('keydown',event=>{
   if(event.target instanceof Element && event.target.closest('input,select,textarea,button,a,[contenteditable="true"]'))return;
   if(event.ctrlKey||event.metaKey||event.altKey)return;
   const key=event.key.toLowerCase();
-  if(['arrowleft','arrowright','arrowdown','arrowup','x','p','escape','r','enter',' ','c'].includes(key))event.preventDefault();
+  if(['arrowleft','arrowright','arrowdown','arrowup','x','p','escape','r','enter',' ','c','e'].includes(key))event.preventDefault();
   let command:(()=>void)|undefined;
   if(key==='arrowleft')command=()=>{game.move(-1);};
   if(key==='arrowright')command=()=>{game.move(1);};
   if(key==='arrowdown')command=()=>{game.softDrop();};
   if(!event.repeat){
+    if(key==='e')command=()=>{game.activate();};
     if(key===' ')command=()=>{game.hardDrop();};
     if(key==='c')command=()=>{game.hold();};
     if(key==='arrowup'||key==='x')command=()=>{game.rotate();};
