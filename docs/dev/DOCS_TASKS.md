@@ -31,7 +31,7 @@ The running SDD Manager package's `assets/DOCS_TRACKING_TEMPLATE.json` supplies 
 - [x] DOCS-005 — Prepare and accept SPEC.
     - Specify observable behavior, interfaces, error contracts, required qualities and acceptance conditions from the accepted design.
     - Complete required SPEC QC and its human acceptance checkpoint.
-- [ ] DOCS-006 — Prepare and accept PLAN.
+- [x] DOCS-006 — Prepare and accept PLAN.
     - Define delivery phases, milestones, dependencies and exit conditions against SPEC.
     - Complete PLAN QC, then present PLAN for human approval.
 - [ ] DOCS-007 — Prepare and accept layout.
@@ -106,3 +106,7 @@ DOCS-004: reviewed component cohesion, one state owner, shared placement authori
 ## SPEC acceptance
 
 DOCS-005: SPEC R-01–09 and its adjacent source-identified conformance report are Ready for PLAN. Accepted under 2026-10-22 preapproval. Gameplay boundary decisions from the approved brief are preserved; delegated keys, scoring, rotation offsets, exact timer behavior and configuration tokens are settled before implementation.
+
+## DOCS-006 acceptance
+
+PLAN strategy QC passed against SPEC/design with source identities and complete grouped contract coverage. Delivery milestone counts 2/1/1/1 are explicitly assessed and justified by coherent small increments; excluded phase review milestones remain mandatory. Baseline scope, subsequent dependencies, both-browser evidence and phase release gates are defined. Layout readiness is separately pending. Accepted under the user's 2026-10-22 preapproval.
