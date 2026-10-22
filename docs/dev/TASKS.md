@@ -23,9 +23,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Scope and evidence: Read-only domain/tooling code review, required unit/type checks, blocker repair, TODO assessment, docs/dev/reports/phases/1/1.1.md and HANDOFF refresh.
             Verified result: [T-004](reports/phases/1/T-004.md).
     - [ ] Milestone 1.2 — Playable browser experience
-        - [ ] T-005 — Render a playable classic game with native controls
+        - [x] T-005 — Render a playable classic game with native controls
             Depends on: T-004.
             Scope and evidence: src/renderer.ts, src/main.ts, style and index; R-01–02/R-06 baseline. Browser RED/GREEN for start, real key movement, rotation, pause/restart, focus and Canvas output.
+            Verified result: [T-005](reports/phases/1/T-005.md).
         - [ ] T-006 — Verify classic browser acceptance and document setup
             Depends on: T-005.
             Scope and evidence: tests/browser and README/AGENTS; R-09. Both-browser native interaction, game-over/line-clear fixtures, screenshot inspection, production build and validated setup commands.
