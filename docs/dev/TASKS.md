@@ -93,9 +93,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 - [ ] Phase 4 — Persistent configuration
     - [ ] Milestone 4.1 — Saved and shareable settings
-        - [ ] T-018 — Implement independent URL cookie settings persistence
+        - [x] T-018 — Implement independent URL cookie settings persistence
             Depends on: T-017 and phase 3 integrated/released.
             Scope and evidence: src/settings.ts and controlled-adapter unit checks; R-07. RED/GREEN for all six precedence paths, explicit defaults, omitted/invalid/repeated values, change writes and storage/URL failures.
+            Verified result: [T-018](reports/phases/4/T-018.md).
         - [ ] T-019 — Integrate reload persistence and complete user guidance
             Depends on: T-018.
             Scope and evidence: main, browser suites and README; R-07/R-09. Real cookies, parameter preservation, reload/reopen and six-setting controls in both browsers; complete regression and production build.

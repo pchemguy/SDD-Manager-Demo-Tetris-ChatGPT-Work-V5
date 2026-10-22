@@ -1,4 +1,4 @@
-/** Session settings and policy transitions; persistence gets controlled-adapter coverage later. */
+/** Canonical settings and session policy transitions. */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { CHOICES, DEFAULTS, KEYS, decodeSetting } from '../../src/settings.ts';
