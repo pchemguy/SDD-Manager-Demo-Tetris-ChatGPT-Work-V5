@@ -28,7 +28,7 @@ The running SDD Manager package's `assets/DOCS_TRACKING_TEMPLATE.json` supplies 
 - [x] DOCS-004 — Prepare and accept DECOMPOSITION.
     - Define component responsibilities, collaboration, ownership and design-level interface boundaries consistently with ARCHITECTURE.
     - Review the proposal with the human and complete its acceptance checkpoint.
-- [ ] DOCS-005 — Prepare and accept SPEC.
+- [x] DOCS-005 — Prepare and accept SPEC.
     - Specify observable behavior, interfaces, error contracts, required qualities and acceptance conditions from the accepted design.
     - Complete required SPEC QC and its human acceptance checkpoint.
 - [ ] DOCS-006 — Prepare and accept PLAN.
@@ -102,3 +102,7 @@ DOCS-003: reviewed major ownership, dependency direction, shared landing authori
 ## DECOMPOSITION acceptance
 
 DOCS-004: reviewed component cohesion, one state owner, shared placement authority, held-piece lifetime, elapsed-time input, storage failure boundaries and test seams. Accepted under the 2026-10-22 preapproval. Updated accepted PROJECT status and architecture navigation to express the current state; gameplay decisions are unchanged from the approved proposal. No unresolved component boundary blocks SPEC.
+
+## SPEC acceptance
+
+DOCS-005: SPEC R-01–09 and its adjacent source-identified conformance report are Ready for PLAN. Accepted under 2026-10-22 preapproval. Gameplay boundary decisions from the approved brief are preserved; delegated keys, scoring, rotation offsets, exact timer behavior and configuration tokens are settled before implementation.
