@@ -27,9 +27,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-004.
             Scope and evidence: src/renderer.ts, src/main.ts, style and index; R-01–02/R-06 baseline. Browser RED/GREEN for start, real key movement, rotation, pause/restart, focus and Canvas output.
             Verified result: [T-005](reports/phases/1/T-005.md).
-        - [ ] T-006 — Verify classic browser acceptance and document setup
+        - [x] T-006 — Verify classic browser acceptance and document setup
             Depends on: T-005.
             Scope and evidence: tests/browser and README/AGENTS; R-09. Both-browser native interaction, game-over/line-clear fixtures, screenshot inspection, production build and validated setup commands.
+            Verified result: [T-006](reports/phases/1/T-006.md).
         - [ ] T-007 — Review test and report milestone 1.2
             Depends on: T-005, T-006.
             Scope and evidence: Whole classic UI/integration code review, required regressions, docs/dev/reports/phases/1/1.2.md, TODO assessment and HANDOFF refresh.
