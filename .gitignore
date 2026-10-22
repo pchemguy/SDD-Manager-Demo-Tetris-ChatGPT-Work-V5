@@ -10,3 +10,7 @@ node_modules/
 dist/
 test-results/
 playwright-report/
+
+/RELEASE-NOTES.md
+
+/.release-highlights.md
