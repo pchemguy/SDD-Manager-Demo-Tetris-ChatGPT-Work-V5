@@ -30,9 +30,9 @@ test('hold becomes available after lock and nonempty swap does not consume next'
   assert.equal(game.next,next);assert.equal(draws,before);
 });
 test('disabled hold retains storage and restart clears it while retaining enablement',()=>{
-  const game=started();game.hold();lockCurrent(game);game.holdEnabled=false;
+  const game=started();game.hold();lockCurrent(game);game.configure({...game.settings,hold:'off'});
   const snapshot=JSON.stringify(game);assert.equal(game.hold(),false);assert.equal(JSON.stringify(game),snapshot);
-  assert.notEqual(game.held,null);game.restart();assert.equal(game.held,null);assert.equal(game.holdEnabled,false);
+  assert.notEqual(game.held,null);game.restart();assert.equal(game.held,null);assert.equal(game.settings.hold,'off');
 });
 test('hold rejects paused input and blocked received spawn ends without overwriting cells',()=>{
   const game=started();game.togglePause();assert.equal(game.hold(),false);game.togglePause();

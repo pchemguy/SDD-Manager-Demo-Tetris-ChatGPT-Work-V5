@@ -38,18 +38,18 @@ test('repeated follow hard drops preserve an existing grounding deadline',()=>{
   assert.equal(game.hardDrop(),true);game.advance(99);assert.equal(count(game),0);game.advance(1);assert.equal(count(game),4);
 });
 test('instant hard drop locks immediately under either general policy',()=>{
-  for(const policy of ['interval','failed'] as const){const game=started();game.lockPolicy=policy;game.dropLock='instant';
+  for(const policy of ['interval','failed'] as const){const game=started();game.configure({...game.settings,lock:policy});game.configure({...game.settings,dropLock:'instant'});
     game.active={type:'O',rotation:0,x:4,y:0};game.hardDrop();assert.equal(count(game),4);assert.equal(game.score,36);}
 });
 test('follow hard drop under failed policy waits for next failed downward attempt',()=>{
-  const game=started();game.lockPolicy='failed';game.active={type:'O',rotation:0,x:4,y:0};
+  const game=started();game.configure({...game.settings,lock:'failed'});game.active={type:'O',rotation:0,x:4,y:0};
   game.hardDrop();assert.equal(count(game),0);assert.equal(game.softDrop(),false);assert.equal(count(game),4);
 });
 test('failed policy ignores grounding timer and locks on the next gravity attempt',()=>{
-  const game=started();game.lockPolicy='failed';game.active={type:'O',rotation:0,x:4,y:17};game.advance(500);game.softDrop();
+  const game=started();game.configure({...game.settings,lock:'failed'});game.active={type:'O',rotation:0,x:4,y:17};game.advance(500);game.softDrop();
   game.advance(299);assert.equal(count(game),0);game.advance(1);assert.equal(count(game),4);
 });
 test('disabled hard drop and paused commands do not change state',()=>{
-  const game=started();game.hardDropEnabled=false;let before=JSON.stringify(game);assert.equal(game.hardDrop(),false);assert.equal(JSON.stringify(game),before);
-  game.hardDropEnabled=true;game.togglePause();before=JSON.stringify(game);assert.equal(game.hardDrop(),false);assert.equal(JSON.stringify(game),before);
+  const game=started();game.configure({...game.settings,hardDrop:'off'});let before=JSON.stringify(game);assert.equal(game.hardDrop(),false);assert.equal(JSON.stringify(game),before);
+  game.configure({...game.settings,hardDrop:'on'});game.togglePause();before=JSON.stringify(game);assert.equal(game.hardDrop(),false);assert.equal(JSON.stringify(game),before);
 });

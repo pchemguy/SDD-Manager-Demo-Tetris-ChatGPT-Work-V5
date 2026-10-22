@@ -16,7 +16,7 @@ export function drawBoard(canvas: HTMLCanvasElement, game: Game): void {
   for(let y=1;y<20;y++){context.beginPath();context.moveTo(0,y*size);context.lineTo(canvas.width,y*size);context.stroke();}
   game.board.forEach((row,y)=>row.forEach((type,x)=>{if(type)block(context,x*size,y*size,size,COLORS[type]);}));
   const ghost=game.ghost;
-  if(ghostVisible(ghost,game.ghostMode)&&ghost){
+  if(ghostVisible(ghost,game.settings.ghost)&&ghost){
     context.fillStyle=COLORS[ghost.type];context.strokeStyle=COLORS[ghost.type];
     for(const [x,y] of cells(ghost)){
       context.globalAlpha=.14;context.fillRect(x*size+2,y*size+2,size-4,size-4);
