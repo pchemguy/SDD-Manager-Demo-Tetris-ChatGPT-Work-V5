@@ -1,0 +1,21 @@
+{
+  "name": "stack-browser-tetris",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4317 --strictPort",
+    "check": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build --base=./",
+    "test:unit": "node scripts/test-unit.mjs",
+    "test:browser": "node scripts/run-browser.mjs",
+    "setup:browsers": "node scripts/setup-browsers.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@types/node": "24.10.1",
+    "typescript": "5.9.3",
+    "vite": "7.1.12"
+  }
+}

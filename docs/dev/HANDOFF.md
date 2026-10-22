@@ -33,3 +33,7 @@ Detailed progress after this checkpoint belongs in TASKS and phase task/boundary
 ## Preparation integration
 
 Explicit two-parent integration: source `600fb7e4bdfbfa5b6eb742713f41615a7c1dba12` from `design-docs/main` into main parent `70ede2fe4f8db3fc0357df4c74fca944c0a7652e`. Merged document/checklist/whitespace checks passed. All nine DOCS issues were read back closed. Confirm this merge's publication, then close milestone 1 and activate phase 1 under the existing full-range grant.
+
+## Phase 1 activation
+
+Preparation merge `0dcd660c68c22717617f4f931f2be9f96d3c5add` is published and milestone 1 is closed. Phase 1 label, native milestones 2/3/4 and task issues 10–17 were created and read back with associations. Working branch `phase/1-classic-baseline` starts from that main commit. T-001 owns this entry/setup update; all 21 tasks remain authorized under the user's full-range preapproval.

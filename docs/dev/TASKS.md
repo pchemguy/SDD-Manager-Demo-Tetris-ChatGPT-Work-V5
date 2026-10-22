@@ -6,9 +6,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 - [ ] Phase 1 — Classic baseline
     - [ ] Milestone 1.1 — Verified game foundation
-        - [ ] T-001 — Establish pinned tooling and isolated browser capability
+        - [x] T-001 — Establish pinned tooling and isolated browser capability
             Depends on: none.
             Scope and evidence: Root package/lock/TS/Playwright config and scripts; R-09. Verify locked installation, both managed browser versions, two isolated interaction/render/teardown cycles per browser, actual runner wiring and central-policy diagnostics. Record setup provenance and limits.
+            Verified result: [T-001](reports/phases/1/T-001.md).
         - [ ] T-002 — Implement tetromino geometry and normal placement
             Depends on: T-001.
             Scope and evidence: src/model.ts and focused unit checks; R-01/R-08. Observe RED/GREEN for seven four-cell types, rotations, bounds, collision and normal landing.
@@ -92,4 +93,4 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 ## Execution evidence
 
-Implementation has not begun. Task-specific RED/GREEN commands, checks and outcome records belong under the owning phase report directory and are linked from completion entries. Review reports preserve findings, TODO sections and source scope.
+Implementation is progressing under the recorded full-range authority. Task-specific RED/GREEN commands, checks and outcome records belong under the owning phase report directory and are linked from completion entries. Review reports preserve findings, TODO sections and source scope.
