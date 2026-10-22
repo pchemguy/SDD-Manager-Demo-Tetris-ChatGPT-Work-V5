@@ -82,3 +82,15 @@ All four initialization destinations existed at entry. Retained all four byte fo
 | `SKILL_DISCOVERY_PROTOCOL.md` | `ae6fd000ed174d13706689148ab9ab20cd26ed5826ead72829679905bd44f5ec` |
 
 Added effective `*.tkn` exclusion and verified that the credential is untracked before protected storage. Established `HANDOFF.md` with the initial branch and next checkpoint. DOCS-001 publication and issue closure must be verified after this completion commit before document authoring.
+
+## PROJECT proposal and review state
+
+DOCS-001 is complete in `147df9f64982e5efb4fff23f6d135e7bb786283d`; its push/readback succeeded and issue #1 was read back closed as completed with an evidence comment. The connected GitHub app rejected comment/update writes with `Resource not accessible by integration`; the already supplied repository token completed those same updates and readback. No credential replacement or project-scope change was required.
+
+Prepared PROJECT from the user's complete 2026-10-22 request. Human acceptance is pending; DOCS-002 remains unchecked and issue #2 remains open. No preapproval applies to this repository. The proposal distinguishes requested scope from proposed platform assumptions, implementation direction, defaults and boundary decisions. Architecture and all dependent document authoring are held at this review checkpoint.
+
+PROJECT proposal content identity: Git blob `b3bdcf3670e56cc958d05c8fcc0f8452fbf05aa1`. The proposal commit supplies its exact Git checkpoint.
+
+Owner review: checked coverage of baseline delivery, every enhancement, both lock-policy choices, midline behavior, penetrator bonus and landing invariants, all six controls, per-setting URL/cookie/default precedence, explicit-default cookie writes, omitted-parameter preservation, and phase releases. Material interaction choices are exposed as proposals for confirmation. PROJECT retains project intent and principal decisions; detailed scoring, input, configuration syntax and acceptance contracts are deferred to their owning SPEC stage.
+
+Verification scope: document coverage/consistency, local links, Markdown structure, unchanged initialization files, task state and staged Git whitespace checks. This proposal provides no gameplay, browser execution or release evidence. Root README now links the proposal, preparation progress, handoff, SDD Manager notice and disclosure without claiming implemented functionality.
