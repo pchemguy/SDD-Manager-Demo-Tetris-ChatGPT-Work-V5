@@ -40,7 +40,7 @@ The running SDD Manager package's `assets/DOCS_TRACKING_TEMPLATE.json` supplies 
 - [x] DOCS-008 — Prepare and accept TASKS.
     - Derive executable tasks, dependencies and required milestone/phase review units from accepted SPEC, PLAN and layout.
     - Complete required task-list QC and its human acceptance checkpoint. Do not start implementation or project implementation-phase objects yet.
-- [ ] DOCS-009 — Pass documentation package QC.
+- [x] DOCS-009 — Pass documentation package QC.
     - Require all preceding tasks complete and their issue closures verified when tracking is enabled.
     - Review the entire document set, necessary children and QC reports for consistency, traceability, delivery readiness and unresolved blockers. Check initialization, orientation, human acceptance and publication evidence.
     - Resolve blockers through their owning documents and recheck affected readiness and acceptance. Retain the package QC report with the preparation documents.
@@ -118,3 +118,7 @@ Combined PLAN/layout QC passed: all architectural components, tests, browser res
 ## DOCS-008 acceptance
 
 TASKS/PLAN QC passed with exact source identities: 21 unique tasks, four phases, five delivery milestones, each final milestone review, and four dedicated one-task phase review milestones. Counts 3/2/3/2/2 delivery tasks are assessed with explicit small-group rationale. Scope, dependencies, accepted contracts, physical owners, test-first evidence, browser proof, docs and final TODO aggregation are covered; no unresolved finding remains. Accepted under the user's 2026-10-22 preapproval.
+
+## DOCS-009 acceptance
+
+Whole-package QC passed across all seven governing roots, adjacent reviews, initialization, human/preapproval evidence, task hierarchy/dependencies, local links and all earlier verified issue closures. Exact reviewed source hashes are retained in DOCS-QC-REPORT. HANDOFF records the complete scope and pending publication/integration/milestone effects. No runtime or product completion is claimed. Accepted under the user's 2026-10-22 preapproval.
