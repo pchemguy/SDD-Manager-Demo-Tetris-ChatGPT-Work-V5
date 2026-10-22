@@ -75,9 +75,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-013 and phase 2 integrated/released.
             Scope and evidence: src/model.ts, game and unit fixtures; R-05 with R-02–04. RED/GREEN for occupied traversal, lowest valid landing, rejected dead ends, inventory cap/spend, hold flag, activation/timing and non-overlap lock.
             Verified result: [T-014](reports/phases/3/T-014.md).
-        - [ ] T-015 — Present penetrator controls white pieces and bonuses
+        - [x] T-015 — Present penetrator controls white pieces and bonuses
             Depends on: T-014.
             Scope and evidence: renderer, main and browser checks; R-05/R-06. Real activation/hold/drop input, matching ghost, white active/held cells, lightning/numeric indicator updates and guidance in both browsers.
+            Verified result: [T-015](reports/phases/3/T-015.md).
         - [ ] T-016 — Review test and report milestone 3.1
             Depends on: T-014, T-015.
             Scope and evidence: Penetrator/invariant code review and focused/full regressions; docs/dev/reports/phases/3/3.1.md, TODO assessment and HANDOFF refresh.
