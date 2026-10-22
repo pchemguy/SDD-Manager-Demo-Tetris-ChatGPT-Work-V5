@@ -71,9 +71,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 - [ ] Phase 3 — Penetrator play
     - [ ] Milestone 3.1 — Safe penetrators and bonus presentation
-        - [ ] T-014 — Implement safe penetrator traversal and bonus lifecycle
+        - [x] T-014 — Implement safe penetrator traversal and bonus lifecycle
             Depends on: T-013 and phase 2 integrated/released.
             Scope and evidence: src/model.ts, game and unit fixtures; R-05 with R-02–04. RED/GREEN for occupied traversal, lowest valid landing, rejected dead ends, inventory cap/spend, hold flag, activation/timing and non-overlap lock.
+            Verified result: [T-014](reports/phases/3/T-014.md).
         - [ ] T-015 — Present penetrator controls white pieces and bonuses
             Depends on: T-014.
             Scope and evidence: renderer, main and browser checks; R-05/R-06. Real activation/hold/drop input, matching ghost, white active/held cells, lightning/numeric indicator updates and guidance in both browsers.

@@ -1,5 +1,5 @@
 /** Deterministic round state and continuous-grounding simulation, independent of the DOM. */
-import { WIDTH, TYPES, KICKS, landing, cells, fits, emptyBoard, spawn, type Board, type Piece, type PieceType } from './model.ts';
+import { WIDTH, TYPES, KICKS, landing, canPlace, cells, fits, emptyBoard, spawn, type Board, type Piece, type PieceType } from './model.ts';
 import { DEFAULTS, type Settings } from './settings.ts';
 export type Status = 'ready' | 'running' | 'paused' | 'over';
 export class Game {
@@ -12,7 +12,13 @@ export class Game {
   active: Piece | null = null;
   next: PieceType = 'I';
   status: Status = 'ready';
-  held: {type:PieceType} | null = null;
+  held: Pick<Piece,'type'|'penetrator'> | null = null;
+  bonuses = 0;
+  activate():boolean {
+    if(this.status!=='running'||!this.active||this.active.penetrator||this.bonuses<1)return false;
+    if(!this.place({...this.active,penetrator:true}))return false;
+    this.bonuses--;return true;
+  }
   score = 0;
   rows = 0;
   private random: () => number;
@@ -28,8 +34,7 @@ export class Game {
   get level(): number { return 1 + Math.floor(this.rows / 10); }
   get interval(): number { return Math.max(80, Math.round(800 * 0.8 ** (this.level - 1))); }
   get grounded(): boolean {
-    return this.active !== null && fits(this.board, this.active)
-      && !fits(this.board, { ...this.active, y: this.active.y + 1 });
+    return this.active!==null&&landing(this.board,this.active)===this.active.y;
   }
   start(): void {
     if (this.status === 'ready') this.status = 'running';
@@ -63,7 +68,7 @@ export class Game {
   }
   hold(): boolean {
     if(this.status!=='running'||!this.active||this.settings.hold==='off'||this.holdUsed)return false;
-    const outgoing={type:this.active.type};const incoming=this.held?.type??this.next;
+    const outgoing={type:this.active.type,penetrator:this.active.penetrator};const incoming=this.held??{type:this.next};
     if(!this.held)this.next=this.draw();
     this.held=outgoing;this.holdUsed=true;this.receive(incoming);return true;
   }
@@ -93,17 +98,17 @@ export class Game {
     if(!this.bag.length)this.bag=[...TYPES];
     return this.bag.splice(Math.floor(this.random()*this.bag.length),1)[0];
   }
-  private receive(type:PieceType):void {
-    this.active=spawn(type);this.fallElapsed=0;this.lockElapsed=0;
-    if(!fits(this.board,this.active)){this.active=null;this.status='over';}
+  private receive(value:Pick<Piece,'type'|'penetrator'>):void {
+    this.active=value.penetrator?{...spawn(value.type),penetrator:true}:spawn(value.type);this.fallElapsed=0;this.lockElapsed=0;
+    if(!canPlace(this.board,this.active)){this.active=null;this.status='over';}
   }
   private reset(status: Status): void {
-    this.board = emptyBoard(); this.score = 0; this.rows = 0;
+    this.board = emptyBoard(); this.score = 0; this.rows = 0;this.bonuses=0;
     this.bag=[];this.held=null;this.holdUsed=false;this.status=status;
-    this.receive(this.draw());this.next=this.draw();
+    this.receive({type:this.draw()});this.next=this.draw();
   }
   private place(candidate: Piece): boolean {
-    if (this.status !== 'running' || !fits(this.board, candidate)) return false;
+    if (this.status !== 'running' || !canPlace(this.board, candidate)) return false;
     const wasGrounded = this.grounded;
     this.active = candidate;
     if (!wasGrounded || !this.grounded) this.lockElapsed = 0;
@@ -125,6 +130,7 @@ export class Game {
     this.board = [...Array.from({ length: cleared }, () => Array<PieceType | null>(WIDTH).fill(null)), ...retained];
     this.score += ([0,100,300,500,800][cleared] ?? 0) * previousLevel;
     this.rows += cleared;
-    const incoming=this.next;this.next=this.draw();this.receive(incoming);this.holdUsed=false;
+    if(cleared===4)this.bonuses=Math.min(3,this.bonuses+1);
+    const incoming=this.next;this.next=this.draw();this.receive({type:incoming});this.holdUsed=false;
   }
 }

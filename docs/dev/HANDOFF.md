@@ -29,3 +29,7 @@ Boundary report: [PHASE-REPORT.md](reports/phases/2/PHASE-REPORT.md).
 Publish/read back T-013 and close issue 22; close native milestone 6 and audit all five phase tasks. Explicitly integrate phase 2 into refreshed main, verify merged checks/publication, then publish/read back v0.2.0 before activating phase 3 penetrator play.
 
 Publish/read back each commit before further task work; task result, evidence and initial completion checkbox stay together. Close task issue after publication, then eligible native milestone after all associated issues close. Integrate a complete phase with an explicit two-parent merge, required merged checks and remote readback; publish matching version/tag/release notes before successor activation. This handoff cannot prove its own subsequent publication.
+
+## Phase 3 entry
+
+v0.2.0 is published at 5aed8ea95d94417030252e2bbf70ddde70def9fb (release 420629910), with exact body/tag/latest readback. All phase 2 tasks/milestones and its two-parent integration are verified. Phase 3 label, native milestones 7/8 and task issues 23–26 are projected/read back. Current branch phase/3-penetrator-play starts from that release source and targets main. T-014 owns the safe penetrator/bonus domain increment; T-015 owns presentation and native activation. Full-range authority remains unchanged.
