@@ -22,7 +22,7 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-001, T-002, T-003.
             Scope and evidence: Read-only domain/tooling code review, required unit/type checks, blocker repair, TODO assessment, docs/dev/reports/phases/1/1.1.md and HANDOFF refresh.
             Verified result: [T-004](reports/phases/1/T-004.md).
-    - [ ] Milestone 1.2 — Playable browser experience
+    - [x] Milestone 1.2 — Playable browser experience
         - [x] T-005 — Render a playable classic game with native controls
             Depends on: T-004.
             Scope and evidence: src/renderer.ts, src/main.ts, style and index; R-01–02/R-06 baseline. Browser RED/GREEN for start, real key movement, rotation, pause/restart, focus and Canvas output.
@@ -31,9 +31,10 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-005.
             Scope and evidence: tests/browser and README/AGENTS; R-09. Both-browser native interaction, game-over/line-clear fixtures, screenshot inspection, production build and validated setup commands.
             Verified result: [T-006](reports/phases/1/T-006.md).
-        - [ ] T-007 — Review test and report milestone 1.2
+        - [x] T-007 — Review test and report milestone 1.2
             Depends on: T-005, T-006.
             Scope and evidence: Whole classic UI/integration code review, required regressions, docs/dev/reports/phases/1/1.2.md, TODO assessment and HANDOFF refresh.
+            Verified result: [T-007](reports/phases/1/T-007.md).
     - [ ] Milestone 1.3 — Phase review
         - [ ] T-008 — Review test and report phase 1
             Depends on: Milestones 1.1 and 1.2 complete and closed.

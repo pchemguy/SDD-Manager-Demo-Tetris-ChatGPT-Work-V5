@@ -31,25 +31,31 @@ app.innerHTML=`
 const element=<T extends HTMLElement>(id:string)=>document.getElementById(id) as T;
 const board=element<HTMLCanvasElement>('board');const game=new Game();
 const names={ready:'Ready',running:'Playing',paused:'Paused',over:'Game over'};
+function text(id:string,value:string):void { const node=element(id);if(node.textContent!==value)node.textContent=value; }
 function render():void {
   drawBoard(board,game);drawPreview(element<HTMLCanvasElement>('next'),game.next);
-  element('score').textContent=String(game.score);element('lines').textContent=String(game.rows);element('level').textContent=String(game.level);
-  element('status').textContent=names[game.status];
+  text('score',String(game.score));text('lines',String(game.rows));text('level',String(game.level));
+  text('status',names[game.status]);
   element('overlay').hidden=game.status==='running';
-  element('overlay-title').textContent=game.status==='paused'?'Take your time.':game.status==='over'?'One more round?':'Ready to stack?';
-  element('overlay-note').textContent=game.status==='over'?`You cleared ${game.rows} lines. A new rhythm awaits.`:'Make room for one more.';
-  element('start').textContent=game.status==='paused'?'Resume game':game.status==='over'?'Play again':'Start game';
+  text('overlay-title',game.status==='paused'?'Take your time.':game.status==='over'?'One more round?':'Ready to stack?');
+  text('overlay-note',game.status==='over'?`You cleared ${game.rows} lines. A new rhythm awaits.`:'Make room for one more.');
+  text('start',game.status==='paused'?'Resume game':game.status==='over'?'Play again':'Start game');
   element<HTMLButtonElement>('pause').disabled=game.status==='ready'||game.status==='over';
-  element('pause').textContent=game.status==='paused'?'Resume':'Pause';
+  text('pause',game.status==='paused'?'Resume':'Pause');
 }
 let previous=performance.now();
-function act(command:()=>void):void { command();previous=performance.now();render();board.focus(); }
+function act(command:()=>void,focus=true):void {
+  const now=performance.now();game.advance(now-previous);previous=now;command();render();if(focus)board.focus();
+}
 element('start').addEventListener('click',()=>act(()=>game.status==='paused'?game.togglePause():game.start()));
 element('pause').addEventListener('click',()=>act(()=>game.togglePause()));
 element('restart').addEventListener('click',()=>act(()=>game.restart()));
 document.addEventListener('keydown',event=>{
   if(event.target instanceof Element && event.target.closest('input,select,textarea,button,a,[contenteditable="true"]'))return;
-  const key=event.key.toLowerCase();let command:(()=>void)|undefined;
+  if(event.ctrlKey||event.metaKey||event.altKey)return;
+  const key=event.key.toLowerCase();
+  if(['arrowleft','arrowright','arrowdown','arrowup','x','p','escape','r','enter'].includes(key))event.preventDefault();
+  let command:(()=>void)|undefined;
   if(key==='arrowleft')command=()=>{game.move(-1);};
   if(key==='arrowright')command=()=>{game.move(1);};
   if(key==='arrowdown')command=()=>{game.softDrop();};
@@ -59,9 +65,9 @@ document.addEventListener('keydown',event=>{
     if(key==='r')command=()=>game.restart();
     if(key==='enter')command=()=>game.start();
   }
-  if(command){event.preventDefault();command();render();}
+  if(command)act(command,false);
 });
-window.addEventListener('blur',()=>{if(game.status==='running'){game.togglePause();render();}});
+window.addEventListener('blur',()=>{if(game.status==='running')act(()=>game.togglePause(),false);});
 function frame(now:number):void{game.advance(now-previous);previous=now;render();requestAnimationFrame(frame);}
 if(import.meta.env.MODE==='test')window.__tetris={game,render};
 render();requestAnimationFrame(frame);
