@@ -52,3 +52,9 @@ export function landing(board: Board, piece: Piece): number | null {
   while (fits(board, { ...piece, y: y + 1 })) y++;
   return y;
 }
+
+export const KICKS = [[0,0],[-1,0],[1,0],[-2,0],[2,0],[0,-1]] as const;
+/** A projection crossing the midline stays visible; inspect occupied cells, not its anchor. */
+export function ghostVisible(piece:Piece|null,mode:'hide'|'dynamic'|'show'):boolean {
+  return piece!==null && mode!=='hide' && (mode==='show'||cells(piece).some(([,y])=>y>=HEIGHT/2));
+}

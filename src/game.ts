@@ -1,19 +1,28 @@
 /** Deterministic round state and continuous-grounding simulation, independent of the DOM. */
-import { WIDTH, TYPES, cells, fits, emptyBoard, spawn, type Board, type Piece, type PieceType } from './model.ts';
+import { WIDTH, TYPES, KICKS, landing, cells, fits, emptyBoard, spawn, type Board, type Piece, type PieceType } from './model.ts';
+import { DEFAULTS, type Settings } from './settings.ts';
 export type Status = 'ready' | 'running' | 'paused' | 'over';
 export class Game {
+  settings:Settings={...DEFAULTS};
+  configure(settings:Settings):void {
+    if(settings.lock!==this.settings.lock)this.lockElapsed=0;
+    this.settings={...settings};
+  }
   board: Board = emptyBoard();
   active: Piece | null = null;
   next: PieceType = 'I';
   status: Status = 'ready';
+  held: {type:PieceType} | null = null;
   score = 0;
   rows = 0;
   private random: () => number;
+  private bag: PieceType[] = [];
+  private holdUsed = false;
   private fallElapsed = 0;
   private lockElapsed = 0;
 
-  constructor(random: () => number = Math.random) {
-    this.random = random;
+  constructor(random: () => number = Math.random, settings:Settings=DEFAULTS) {
+    this.random = random;this.settings={...settings};
     this.reset('ready');
   }
   get level(): number { return 1 + Math.floor(this.rows / 10); }
@@ -36,7 +45,27 @@ export class Game {
     return this.place({ ...this.active, x: this.active.x + direction });
   }
   rotate(): boolean {
-    return this.active ? this.place({ ...this.active, rotation: (this.active.rotation + 1) % 4 }) : false;
+    if(!this.active)return false;
+    const rotated={...this.active,rotation:(this.active.rotation+1)%4};
+    for(const [dx,dy] of KICKS)if(this.place({...rotated,x:rotated.x+dx,y:rotated.y+dy}))return true;
+    return false;
+  }
+  get ghost(): Piece | null {
+    if(!this.active)return null;const y=landing(this.board,this.active);
+    return y===null?null:{...this.active,y};
+  }
+  hardDrop(): boolean {
+    if(this.status!=='running'||!this.active||this.settings.hardDrop==='off')return false;
+    const projected=this.ghost;if(!projected)return false;
+    const distance=projected.y-this.active.y;
+    if(!this.place(projected))return false;
+    this.score+=2*distance;if(this.settings.dropLock==='instant')this.lock();return true;
+  }
+  hold(): boolean {
+    if(this.status!=='running'||!this.active||this.settings.hold==='off'||this.holdUsed)return false;
+    const outgoing={type:this.active.type};const incoming=this.held?.type??this.next;
+    if(!this.held)this.next=this.draw();
+    this.held=outgoing;this.holdUsed=true;this.receive(incoming);return true;
   }
   softDrop(): boolean { return this.down(true); }
 
@@ -48,21 +77,30 @@ export class Game {
       const grounded = this.grounded;
       if (!grounded) this.lockElapsed = 0;
       const interval = this.interval;
+      const timed=grounded&&this.settings.lock==='interval';
       const step = Math.min(remaining, Math.max(0, interval - this.fallElapsed),
-        grounded ? Math.max(0, interval - this.lockElapsed) : Infinity);
+        timed ? Math.max(0, interval - this.lockElapsed) : Infinity);
       this.fallElapsed += step;
-      if (grounded) this.lockElapsed += step;
+      if (timed) this.lockElapsed += step;
       remaining -= step;
-      if (grounded && this.lockElapsed >= interval) { this.lock(); continue; }
+      if (timed && this.lockElapsed >= interval) { this.lock(); continue; }
       if (this.fallElapsed >= interval) { this.fallElapsed = 0; this.down(false); }
     }
   }
 
-  private draw(): PieceType { return TYPES[Math.floor(this.random() * TYPES.length)]; }
+  /** Sampling without replacement produces one uniformly shuffled complete bag. */
+  private draw(): PieceType {
+    if(!this.bag.length)this.bag=[...TYPES];
+    return this.bag.splice(Math.floor(this.random()*this.bag.length),1)[0];
+  }
+  private receive(type:PieceType):void {
+    this.active=spawn(type);this.fallElapsed=0;this.lockElapsed=0;
+    if(!fits(this.board,this.active)){this.active=null;this.status='over';}
+  }
   private reset(status: Status): void {
     this.board = emptyBoard(); this.score = 0; this.rows = 0;
-    this.fallElapsed = 0; this.lockElapsed = 0;
-    this.active = spawn(this.draw()); this.next = this.draw(); this.status = status;
+    this.bag=[];this.held=null;this.holdUsed=false;this.status=status;
+    this.receive(this.draw());this.next=this.draw();
   }
   private place(candidate: Piece): boolean {
     if (this.status !== 'running' || !fits(this.board, candidate)) return false;
@@ -75,6 +113,7 @@ export class Game {
     if (!this.active) return false;
     const moved = this.place({ ...this.active, y: this.active.y + 1 });
     if (moved && soft) this.score++;
+    if(!moved&&this.status==='running'&&this.settings.lock==='failed'&&this.grounded)this.lock();
     return moved;
   }
   private lock(): void {
@@ -86,8 +125,6 @@ export class Game {
     this.board = [...Array.from({ length: cleared }, () => Array<PieceType | null>(WIDTH).fill(null)), ...retained];
     this.score += ([0,100,300,500,800][cleared] ?? 0) * previousLevel;
     this.rows += cleared;
-    this.active = spawn(this.next); this.next = this.draw();
-    this.fallElapsed = 0; this.lockElapsed = 0;
-    if (!fits(this.board, this.active)) { this.active = null; this.status = 'over'; }
+    const incoming=this.next;this.next=this.draw();this.receive(incoming);this.holdUsed=false;
   }
 }

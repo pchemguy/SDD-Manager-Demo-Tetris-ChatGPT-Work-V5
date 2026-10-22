@@ -2,8 +2,12 @@
 import './style.css';
 import { Game } from './game.ts';
 import { drawBoard, drawPreview } from './renderer.ts';
+import { CHOICES, KEYS, decodeSetting, type SettingKey } from './settings.ts';
 import { version } from '../package.json';
 declare global { interface Window { __tetris: { game: Game; render: () => void } } }
+const LABELS:Record<SettingKey,string>={ghost:'Ghost piece',hardDrop:'Hard drop',next:'Next-piece preview',dropLock:'Hard-drop locking',lock:'General locking',hold:'Hold piece'};
+const OPTION_LABELS:Record<SettingKey,Record<string,string>>={ghost:{hide:'Always hide',dynamic:'Dynamic · below midline',show:'Always show'},hardDrop:{on:'On',off:'Off'},next:{on:'On',off:'Off'},dropLock:{follow:'Follow general policy',instant:'Lock immediately'},lock:{interval:'Full gravity interval',failed:'Failed downward attempt'},hold:{on:'On',off:'Off'}};
+const settingsMarkup=KEYS.map(key=>`<div class="setting"><label for="setting-${key}">${LABELS[key]}</label><select id="setting-${key}">${CHOICES[key].map(value=>`<option value="${value}">${OPTION_LABELS[key][value]}</option>`).join('')}</select></div>`).join('');
 const app=document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML=`
 <header><a class="brand" href="./" aria-label="Stack home"><span class="brand-mark">▦</span> STACK<span class="brand-dot">.</span></a><span class="edition">THE FALLING BLOCK GAME <b>v${version}</b></span></header>
@@ -23,17 +27,22 @@ app.innerHTML=`
       <div class="game-actions"><button id="pause" disabled>Pause</button><button id="restart">New game <kbd>R</kbd></button></div>
     </section>
     <aside class="side-panel" aria-label="Game options">
-      <section class="card"><h2 class="eyebrow">UP NEXT</h2><canvas id="next" width="136" height="96" aria-label="Next piece"></canvas></section>
-      <section class="controls"><h2 class="eyebrow">MAKE YOUR MOVE</h2><dl><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Move</dd><dt><kbd>↑</kbd> / <kbd>X</kbd></dt><dd>Rotate</dd><dt><kbd>↓</kbd></dt><dd>Soft drop</dd><dt><kbd>P</kbd> / <kbd>Esc</kbd></dt><dd>Pause</dd></dl><p class="hint">A full gravity interval to settle.<br>Take a breath. Find your place.</p></section>
+      <div class="previews"><section id="next-card" class="card"><h2 class="eyebrow">UP NEXT</h2><canvas id="next" width="96" height="72" aria-label="Next piece"></canvas></section><section id="hold-card" class="card"><h2 class="eyebrow">HOLD <kbd>C</kbd></h2><canvas id="held" width="96" height="72" aria-label="Held piece"></canvas><span id="held-label" class="preview-label">Empty</span></section></div>
+      <section class="settings"><h2 class="eyebrow">YOUR GAME</h2>${settingsMarkup}</section>
+      <section class="controls"><h2 class="eyebrow">MAKE YOUR MOVE</h2><dl><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Move</dd><dt><kbd>↑</kbd> / <kbd>X</kbd></dt><dd>Rotate</dd><dt><kbd>↓</kbd></dt><dd>Soft drop</dd><dt><kbd>Space</kbd></dt><dd>Hard drop</dd><dt><kbd>C</kbd></dt><dd>Hold piece</dd><dt><kbd>P</kbd> / <kbd>Esc</kbd></dt><dd>Pause</dd></dl><p class="hint" id="lock-hint">A full gravity interval to settle.</p></section>
     </aside>
   </div>
-</main><footer>ONE PIECE AT A TIME.<span>Classic play · Made for your browser</span></footer>`;
+</main><footer>ONE PIECE AT A TIME.<span>Your pace, your game</span></footer>`;
 const element=<T extends HTMLElement>(id:string)=>document.getElementById(id) as T;
 const board=element<HTMLCanvasElement>('board');const game=new Game();
 const names={ready:'Ready',running:'Playing',paused:'Paused',over:'Game over'};
 function text(id:string,value:string):void { const node=element(id);if(node.textContent!==value)node.textContent=value; }
 function render():void {
   drawBoard(board,game);drawPreview(element<HTMLCanvasElement>('next'),game.next);
+  drawPreview(element<HTMLCanvasElement>('held'),game.held?.type??null);
+  element('next-card').hidden=game.settings.next==='off';element('hold-card').hidden=game.settings.hold==='off';
+  text('held-label',game.held?game.held.type+' piece':'Empty');
+  text('lock-hint',game.settings.lock==='interval'?'A full gravity interval to settle.':'Lock on the next failed downward attempt.');
   text('score',String(game.score));text('lines',String(game.rows));text('level',String(game.level));
   text('status',names[game.status]);
   element('overlay').hidden=game.status==='running';
@@ -54,12 +63,14 @@ document.addEventListener('keydown',event=>{
   if(event.target instanceof Element && event.target.closest('input,select,textarea,button,a,[contenteditable="true"]'))return;
   if(event.ctrlKey||event.metaKey||event.altKey)return;
   const key=event.key.toLowerCase();
-  if(['arrowleft','arrowright','arrowdown','arrowup','x','p','escape','r','enter'].includes(key))event.preventDefault();
+  if(['arrowleft','arrowright','arrowdown','arrowup','x','p','escape','r','enter',' ','c'].includes(key))event.preventDefault();
   let command:(()=>void)|undefined;
   if(key==='arrowleft')command=()=>{game.move(-1);};
   if(key==='arrowright')command=()=>{game.move(1);};
   if(key==='arrowdown')command=()=>{game.softDrop();};
   if(!event.repeat){
+    if(key===' ')command=()=>{game.hardDrop();};
+    if(key==='c')command=()=>{game.hold();};
     if(key==='arrowup'||key==='x')command=()=>{game.rotate();};
     if(key==='p'||key==='escape')command=()=>game.togglePause();
     if(key==='r')command=()=>game.restart();
@@ -67,6 +78,10 @@ document.addEventListener('keydown',event=>{
   }
   if(command)act(command,false);
 });
+for(const key of KEYS){
+  const control=element<HTMLSelectElement>('setting-'+key);control.value=game.settings[key];
+  control.addEventListener('change',()=>{const value=decodeSetting(key,control.value);if(value!==undefined)act(()=>game.configure({...game.settings,[key]:value}),false);});
+}
 window.addEventListener('blur',()=>{if(game.status==='running')act(()=>game.togglePause(),false);});
 function frame(now:number):void{game.advance(now-previous);previous=now;render();requestAnimationFrame(frame);}
 if(import.meta.env.MODE==='test')window.__tetris={game,render};

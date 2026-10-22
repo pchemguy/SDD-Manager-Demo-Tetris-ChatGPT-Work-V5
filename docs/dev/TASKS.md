@@ -43,24 +43,29 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 ## Phase 2 — Modern controls
 
-- [ ] Phase 2 — Modern controls
-    - [ ] Milestone 2.1 — Modern play and session configuration
-        - [ ] T-009 — Add seven bag and hold lifecycle
+- [x] Phase 2 — Modern controls
+    - [x] Milestone 2.1 — Modern play and session configuration
+        - [x] T-009 — Add seven bag and hold lifecycle
             Depends on: T-008 and phase 1 integrated/released.
             Scope and evidence: src/game.ts and unit checks; R-03. RED/GREEN for bag membership, queue consumption, one-hold-per-lock, swap/reset and disabled hold.
-        - [ ] T-010 — Add wall kicks shared ghost and hard drop
+            Verified result: [T-009](reports/phases/2/T-009.md).
+        - [x] T-010 — Add wall kicks shared ghost and hard drop
             Depends on: T-009.
             Scope and evidence: src/model.ts, game, renderer and tests; R-02–04. RED/GREEN for ordered kicks, landing agreement, dynamic midline, drop scoring and both hard-drop lock policies.
-        - [ ] T-011 — Expose six live session settings
+            Verified result: [T-010](reports/phases/2/T-010.md).
+        - [x] T-011 — Expose six live session settings
             Depends on: T-010.
             Scope and evidence: src/settings.ts, main/style and tests; R-06. Validated defaults, controls, enablement/policy changes, form focus and both-browser modern interaction; update user guidance.
-        - [ ] T-012 — Review test and report milestone 2.1
+            Verified result: [T-011](reports/phases/2/T-011.md).
+        - [x] T-012 — Review test and report milestone 2.1
             Depends on: T-009, T-010, T-011.
             Scope and evidence: Modern-command/settings code review and regressions; docs/dev/reports/phases/2/2.1.md, TODO assessment and HANDOFF refresh.
-    - [ ] Milestone 2.2 — Phase review
-        - [ ] T-013 — Review test and report phase 2
+            Verified result: [T-012](reports/phases/2/T-012.md).
+    - [x] Milestone 2.2 — Phase review
+        - [x] T-013 — Review test and report phase 2
             Depends on: Milestone 2.1 complete and closed.
             Scope and evidence: Cross-feature timing/hold/ghost/drop and both-browser review, persistence audit, docs/dev/reports/phases/2/PHASE-REPORT.md and HANDOFF. No persistence or penetrator claim.
+            Verified result: [T-013](reports/phases/2/T-013.md).
 
 ## Phase 3 — Penetrator play
 

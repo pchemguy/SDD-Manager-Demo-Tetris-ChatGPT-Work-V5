@@ -51,7 +51,7 @@ test('four simultaneous row clears use the pre-clear level and update speed', ()
 });
 test('a long frame preserves gravity then grounding then lock event order', () => {
   const game=started();ground(game,17);game.advance(1600);assert.equal(occupied(game),4);
-  assert.equal(game.active!.y,0);assert.equal(game.active!.type,'I');
+  assert.equal(game.active!.y,0);assert.equal(game.active!.type,'J');
 });
 test('blocked spawn ends the round without overwriting settled cells', () => {
   const game=started();for(let x=3;x<7;x++)game.board[1][x]='Z';ground(game);
@@ -63,7 +63,7 @@ test('restart clears round state and returns to running', () => {
   assert.equal(game.status,'running');assert.equal(game.score,0);assert.equal(game.rows,0);assert.equal(occupied(game),0);assert.equal(game.active!.y,0);
 });
 test('invalid elapsed values and illegal rotations leave state unchanged', () => {
-  const game=started();game.active={type:'I',rotation:1,x:-2,y:0};const before=JSON.stringify(game);
+  const game=started();game.active={type:'I',rotation:1,x:-2,y:0};for(let y=2;y<4;y++)for(let x=1;x<10;x++)game.board[y][x]='J';const before=JSON.stringify(game);
   assert.equal(game.rotate(),false);for(const elapsed of [-1,NaN,Infinity])game.advance(elapsed);
   assert.equal(JSON.stringify(game),before);
 });

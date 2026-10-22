@@ -1,6 +1,6 @@
 # Project handoff
 
-Checkpoint: T-008 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
+Checkpoint: T-013 verified before its closing commit/publication. Recover later effects from Git, TASKS and hosted readback.
 
 ## Workflow and sources
 
@@ -14,16 +14,18 @@ Main development under sdd-implement; all four phases remain within accepted sco
 
 
 
+
+
 ## Branch and source
 
-Current branch `phase/1-classic-baseline` targets main; branch-off `0dcd660c68c22717617f4f931f2be9f96d3c5add`. Reviewed published source `ceafd728b38715a78a8d2326a05d017139f6c893` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
+Current branch `phase/2-modern-controls` targets main; branch-off `a908861ba877a906f2bff32ba7a4bbcc5687d963`. Reviewed published source `497f02899aaf92f1d3dd4a6ab5de5d56d417b4c0` plus identified repairs in this closing result. Existing phase task issues/milestones are projected and read back; no successor phase is activated before predecessor release. Preparation is integrated and its milestone closed.
 
 ## Current boundary and next action
 
-Phase 1 exits and whole net change reviewed; milestone findings resolved with no remaining TODO. Fresh 28-unit/18-browser/type/build checks passed; production hook absent and documentation links valid. Seven prior task closing commits pass persistence audit; delivery milestones 2/3 read back closed. HANDOFF refreshed; final own-commit audit, phase-review milestone closure, explicit integration and v0.1.0 release follow.
+Phase 2 exit and whole net change reviewed; independent milestone review has no unresolved findings. Fresh 48-unit/24-browser/type/build checks pass with zero owned survivors. Four prior phase task closures pass persistence audit; milestone 5 confirmed closed. Transient hosted closure transport failure reconciled/recovered without duplicate writes or policy changes. No TODO; HANDOFF refreshed.
 
-Boundary report: [PHASE-REPORT.md](reports/phases/1/PHASE-REPORT.md).
+Boundary report: [PHASE-REPORT.md](reports/phases/2/PHASE-REPORT.md).
 
-Publish/read back T-008 and close issue 17, then close native milestone 4 and audit all eight phase task commits. Integrate phase 1 into refreshed main with two parents and merged checks, publish/read back it, then prepare/publish/read back v0.1.0 before activating phase 2.
+Publish/read back T-013 and close issue 22; close native milestone 6 and audit all five phase tasks. Explicitly integrate phase 2 into refreshed main, verify merged checks/publication, then publish/read back v0.2.0 before activating phase 3 penetrator play.
 
 Publish/read back each commit before further task work; task result, evidence and initial completion checkbox stay together. Close task issue after publication, then eligible native milestone after all associated issues close. Integrate a complete phase with an explicit two-parent merge, required merged checks and remote readback; publish matching version/tag/release notes before successor activation. This handoff cannot prove its own subsequent publication.
