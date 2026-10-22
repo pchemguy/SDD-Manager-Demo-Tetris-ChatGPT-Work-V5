@@ -1,2 +1,5 @@
 .obsidian
 .trash
+
+# Repository hosting credentials
+*.tkn
