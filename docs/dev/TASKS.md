@@ -69,7 +69,7 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
 
 ## Phase 3 — Penetrator play
 
-- [ ] Phase 3 — Penetrator play
+- [x] Phase 3 — Penetrator play
     - [x] Milestone 3.1 — Safe penetrators and bonus presentation
         - [x] T-014 — Implement safe penetrator traversal and bonus lifecycle
             Depends on: T-013 and phase 2 integrated/released.
@@ -83,10 +83,11 @@ Derived from accepted [SPEC](SPEC.md), [PLAN](PLAN.md) and [layout](layout.md). 
             Depends on: T-014, T-015.
             Scope and evidence: Penetrator/invariant code review and focused/full regressions; docs/dev/reports/phases/3/3.1.md, TODO assessment and HANDOFF refresh.
             Verified result: [T-016](reports/phases/3/T-016.md).
-    - [ ] Milestone 3.2 — Phase review
-        - [ ] T-017 — Review test and report phase 3
+    - [x] Milestone 3.2 — Phase review
+        - [x] T-017 — Review test and report phase 3
             Depends on: Milestone 3.1 complete and closed.
             Scope and evidence: Review all penetrator interactions and preserved play, persistence audit, docs/dev/reports/phases/3/PHASE-REPORT.md and HANDOFF. Persistence remains pending.
+            Verified result: [T-017](reports/phases/3/T-017.md).
 
 ## Phase 4 — Persistent configuration
 
